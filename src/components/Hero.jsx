@@ -48,9 +48,9 @@ export default function Hero() {
   return (
     <section
       id="home"
-      className="relative min-h-[96vh] flex items-center justify-center pt-28 pb-16 px-4 sm:px-6 lg:px-8 overflow-hidden"
+      className="relative min-h-[92vh] lg:min-h-screen flex items-center justify-center pt-32 pb-24 lg:pt-36 lg:pb-32 px-4 sm:px-6 lg:px-8 overflow-hidden"
     >
-      <div className="max-w-6xl w-full mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
+      <div className="max-w-6xl w-full mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-14 items-center">
         
         {/* Left Content Column (7 cols) - FRNKLYNRD Layout */}
         <motion.div
@@ -59,10 +59,10 @@ export default function Hero() {
           transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
           className="lg:col-span-7 flex flex-col items-start z-10"
         >
-          {/* Availability Status Pill */}
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#12141F]/90 backdrop-blur-md border border-emerald-500/40 text-emerald-400 text-xs font-semibold tracking-wide mb-6 shadow-lg shadow-black/40">
-            <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse shadow-[0_0_8px_rgba(52,211,153,0.8)]" />
-            <span>Available for Projects & Tech Inquiries</span>
+          {/* Academic Status Pill */}
+          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-[#12141F]/90 backdrop-blur-md border border-white/10 text-neutral-300 text-xs font-mono mb-5 shadow-md">
+            <span className="w-2 h-2 rounded-full bg-emerald-400" />
+            <span>BSIT Student • NCST Cavite</span>
           </div>
 
           {/* Small Intro Label */}
@@ -84,12 +84,12 @@ export default function Hero() {
           </div>
 
           {/* Subtitle / Short Introduction */}
-          <p className="text-sm sm:text-base text-neutral-300 max-w-xl leading-relaxed mb-8">
+          <p className="text-sm sm:text-base text-neutral-300 max-w-xl leading-relaxed mb-6">
             {personal.shortIntro}
           </p>
 
           {/* Dual Action CTA Buttons */}
-          <div className="flex flex-wrap items-center gap-4 mb-10 w-full sm:w-auto">
+          <div className="flex flex-wrap items-center gap-4 mb-8 w-full sm:w-auto">
             {/* Primary Glowing Golden Pill */}
             <button
               onClick={() => scrollTo('#projects')}
@@ -110,7 +110,7 @@ export default function Hero() {
           </div>
 
           {/* Key Metrics Counter Bar */}
-          <div className="grid grid-cols-3 gap-6 pt-5 border-t border-white/10 w-full max-w-lg">
+          <div className="grid grid-cols-3 gap-6 pt-6 border-t border-white/10 w-full max-w-lg">
             <div>
               <div className="text-2xl sm:text-3xl font-extrabold text-white flex items-center gap-1">
                 <span className="text-amber-400">3+</span>
@@ -130,11 +130,11 @@ export default function Hero() {
             </div>
 
             <div>
-              <div className="text-base sm:text-lg font-bold text-amber-400 truncate mt-1">
-                {personal.course}
+              <div className="text-2xl sm:text-3xl font-extrabold text-white flex items-center gap-1">
+                <span className="text-amber-400">BSIT</span>
               </div>
-              <div className="text-xs text-neutral-400 font-medium truncate mt-0.5">
-                {personal.school}
+              <div className="text-xs text-neutral-400 font-medium mt-0.5">
+                NCST College
               </div>
             </div>
           </div>
@@ -151,25 +151,7 @@ export default function Hero() {
           <div className="relative w-72 sm:w-84 aspect-square rounded-3xl p-6 bg-[#0E1019]/90 backdrop-blur-2xl border-2 border-amber-400/75 shadow-[0_0_35px_rgba(245,158,11,0.3)] flex flex-col items-center justify-center text-center group">
             
             {/* Ambient Background Aura inside Card */}
-            <div className="absolute inset-0 rounded-3xl bg-[radial-gradient(circle_at_center,_rgba(245,158,11,0.2)_0%,_transparent_75%)] pointer-events-none" />
-
-            {/* SATELLITE CORNER BADGE: Top-Right (FRNKLYNRD Style) */}
-            <div className="absolute -top-3.5 -right-3 sm:-right-4 px-3 py-1.5 rounded-full bg-[#121422] border border-amber-400/60 shadow-lg shadow-black/60 text-[11px] font-mono font-bold text-amber-300 flex items-center gap-1.5 z-20 animate-satellite">
-              <Zap className="w-3 h-3 fill-amber-400 text-amber-400" />
-              <span>Thunderclap & Flash</span>
-            </div>
-
-            {/* SATELLITE CORNER BADGE: Bottom-Left (FRNKLYNRD Style) */}
-            <div className="absolute -bottom-3.5 -left-3 sm:-left-4 px-3 py-1.5 rounded-full bg-[#121422] border border-amber-400/60 shadow-lg shadow-black/60 text-[11px] font-mono font-bold text-amber-300 flex items-center gap-1.5 z-20 animate-satellite-delay">
-              <Database className="w-3 h-3 text-amber-400" />
-              <span>Clean Architecture</span>
-            </div>
-
-            {/* SATELLITE CORNER BADGE: Bottom-Right (FRNKLYNRD Style) */}
-            <div className="absolute -bottom-3.5 -right-3 sm:-right-4 px-3 py-1.5 rounded-full bg-[#121422] border border-white/20 shadow-lg shadow-black/60 text-[11px] font-mono font-bold text-neutral-200 flex items-center gap-1.5 z-20">
-              <Code2 className="w-3 h-3 text-amber-400" />
-              <span>Clean Code</span>
-            </div>
+            <div className="absolute inset-0 rounded-3xl bg-[radial-gradient(circle_at_center,_rgba(245,158,11,0.15)_0%,_transparent_75%)] pointer-events-none" />
 
             {/* Center Developer / Student Profile Photo */}
             <div className="relative w-28 h-28 sm:w-32 sm:h-32 rounded-full p-1 bg-gradient-to-b from-amber-400 via-amber-500 to-yellow-500 shadow-[0_0_25px_rgba(245,158,11,0.45)] mb-4 group-hover:scale-105 transition-transform duration-300">

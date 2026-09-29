@@ -15,16 +15,15 @@ export default function About() {
   const { personal, aboutCards } = portfolioData;
 
   return (
-    <section id="about" className="py-24 px-4 sm:px-6 lg:px-8 relative z-10">
+    <section id="about" className="pt-24 pb-28 sm:pt-32 sm:pb-36 lg:pt-36 lg:pb-40 px-4 sm:px-6 lg:px-8 relative z-10">
       {/* Background Ambient Glow */}
       <div className="absolute top-1/2 left-0 w-80 h-80 bg-amber-500/10 rounded-full blur-[140px] pointer-events-none -z-10" />
 
       <div className="max-w-6xl w-full mx-auto">
         {/* Section Header */}
         <div className="mb-14 text-center sm:text-left">
-          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-amber-400/15 border border-amber-400/30 text-amber-400 text-xs font-semibold tracking-widest uppercase mb-3">
-            <Zap className="w-3 h-3 fill-amber-400 text-amber-400" />
-            <span>DISCOVER</span>
+          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-neutral-300 text-xs font-mono tracking-widest uppercase mb-3">
+            <span>ABOUT ME</span>
           </div>
           <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold tracking-tight text-white">
             About Me
@@ -35,7 +34,7 @@ export default function About() {
         {/* Two-Column Layout */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
           
-          {/* Left Column: Portrait / Profile Placeholder Frame */}
+          {/* Left Column: Portrait Frame */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -44,7 +43,6 @@ export default function About() {
             className="lg:col-span-5 flex flex-col items-center"
           >
             <div className="relative w-full max-w-sm rounded-3xl p-3 bg-[#111320]/90 backdrop-blur-xl border border-amber-400/40 shadow-xl shadow-amber-500/10 group">
-              
               {/* Image Frame */}
               <div className="w-full aspect-[4/5] rounded-2xl bg-[#090A12] border border-amber-400/30 relative overflow-hidden group">
                 <img
@@ -52,32 +50,6 @@ export default function About() {
                   alt={personal.name}
                   className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500"
                 />
-                
-                {/* Subtle dark ambient gradient at the bottom for readability */}
-                <div className="absolute inset-0 bg-gradient-to-t from-[#090A12]/90 via-transparent to-transparent pointer-events-none" />
-
-                {/* Bottom Tag */}
-                <div className="absolute bottom-4 left-4 right-4 flex items-center justify-center">
-                  <div className="px-3.5 py-1.5 rounded-full bg-[#141624]/90 backdrop-blur-md border border-amber-400/40 text-[11px] font-mono font-semibold text-amber-400 shadow-lg shadow-black/60">
-                    ⚡ STATUS: {personal.status}
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* Quick Stat Pills Under Photo */}
-            <div className="grid grid-cols-2 gap-3 w-full max-w-sm mt-4">
-              <div className="p-3.5 rounded-2xl bg-[#111320]/80 backdrop-blur-md border border-white/10 text-center">
-                <div className="text-xs text-neutral-400">Philosophy</div>
-                <div className="text-xs font-bold text-white mt-0.5">
-                  Clean & Resilient
-                </div>
-              </div>
-              <div className="p-3.5 rounded-2xl bg-[#111320]/80 backdrop-blur-md border border-white/10 text-center">
-                <div className="text-xs text-neutral-400">Execution</div>
-                <div className="text-xs font-bold text-amber-400 mt-0.5">
-                  Thunder Speed
-                </div>
               </div>
             </div>
           </motion.div>
@@ -100,7 +72,7 @@ export default function About() {
                 {personal.bio}
               </p>
               <p className="text-neutral-400 text-sm leading-relaxed">
-                Currently pursuing <span className="font-semibold text-white">{personal.course}</span> at <span className="font-semibold text-amber-400">{personal.school}</span> in <span className="font-semibold text-white">{personal.location}</span>.
+                Currently pursuing <span className="font-semibold text-white">{personal.course}</span> at <span className="font-semibold text-amber-400">{personal.school}</span> located in <span className="font-semibold text-white">{personal.location}</span>.
               </p>
             </div>
 

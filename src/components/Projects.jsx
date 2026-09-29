@@ -1,163 +1,117 @@
 import React, { useState } from 'react';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
+import { ArrowRight, Zap } from 'lucide-react';
 import { portfolioData } from '../data/portfolioData';
-import {
-  ExternalLink,
-  Code2,
-  Zap,
-  ArrowUpRight,
-  FolderGit2,
-} from 'lucide-react';
+import ProjectDetailView from './ProjectDetailView';
 
 export default function Projects() {
   const { projects } = portfolioData;
-  const [hoveredCard, setHoveredCard] = useState(null);
+  const [selectedProject, setSelectedProject] = useState(null);
+
+  const handlePrev = () => {
+    if (!selectedProject) return;
+    const currentIndex = projects.findIndex((p) => p.id === selectedProject.id);
+    const prevIndex = (currentIndex - 1 + projects.length) % projects.length;
+    setSelectedProject(projects[prevIndex]);
+  };
+
+  const handleNext = () => {
+    if (!selectedProject) return;
+    const currentIndex = projects.findIndex((p) => p.id === selectedProject.id);
+    const nextIndex = (currentIndex + 1) % projects.length;
+    setSelectedProject(projects[nextIndex]);
+  };
 
   return (
     <section id="projects" className="py-24 px-4 sm:px-6 lg:px-8 relative z-10">
-      {/* Background Accent */}
-      <div className="absolute top-1/4 right-0 w-80 h-80 bg-amber-500/10 rounded-full blur-[140px] pointer-events-none -z-10" />
+      {/* Background Accent Glow */}
+      <div className="absolute top-1/3 right-0 w-80 h-80 bg-amber-500/10 rounded-full blur-[140px] pointer-events-none -z-10" />
 
       <div className="max-w-6xl w-full mx-auto">
-        {/* Section Header */}
-        <div className="mb-16 text-center sm:text-left flex flex-col sm:flex-row sm:items-end justify-between gap-6">
-          <div>
-            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-amber-400/15 border border-amber-400/30 text-amber-400 text-xs font-semibold tracking-widest uppercase mb-3">
-              <Zap className="w-3 h-3 fill-amber-400 text-amber-400" />
-              <span>SELECTED WORK</span>
+        {/* Section Header (Matching Reference Image 1) */}
+        <div className="flex items-center justify-between mb-10 pb-4 border-b border-white/10">
+          <div className="flex items-center gap-3 sm:gap-5">
+            {/* Handwritten 'stuff i've built ⤹' Badge */}
+            <div className="hidden sm:block select-none pointer-events-none -mt-2">
+              <img
+                src="/assets/projects/stuff-ive-built.png"
+                alt="stuff i've built ⤹"
+                className="h-9 w-auto object-contain opacity-85 hover:opacity-100 transition-opacity"
+              />
             </div>
-            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold tracking-tight text-white">
-              My Projects
+            
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-white">
+              Projects
             </h2>
-            <div className="w-16 h-1 bg-gradient-to-r from-amber-500 to-yellow-400 rounded-full mt-3 sm:mx-0 mx-auto" />
           </div>
 
-          <p className="text-sm text-neutral-400 max-w-md">
-            A curated selection of applications built with clean modular architecture, responsive designs, and robust performance.
-          </p>
+          <div className="text-xs sm:text-sm font-mono tracking-widest text-neutral-400 font-semibold uppercase">
+            {projects.length} ITEMS
+          </div>
         </div>
 
-        {/* 3-Column Card Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {projects.map((project, index) => {
-            const isHovered = hoveredCard === project.id;
+        {/* 2-Column Grid (Matching Reference Image 1) */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
+          {projects.map((project, index) => (
+            <motion.div
+              key={project.id}
+              initial={{ opacity: 0, y: 25 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: '-40px' }}
+              transition={{ duration: 0.5, delay: index * 0.08 }}
+              onClick={() => setSelectedProject(project)}
+              className="group cursor-pointer rounded-2xl sm:rounded-3xl p-3.5 sm:p-5 bg-[#0B0C14]/90 backdrop-blur-xl border border-white/10 hover:border-amber-400/60 shadow-lg hover:shadow-[0_0_35px_rgba(245,158,11,0.22)] transition-all duration-300 flex flex-col"
+            >
+              {/* Thumbnail Image Viewport */}
+              <div className="w-full aspect-[16/10] rounded-xl sm:rounded-2xl overflow-hidden bg-black/60 border border-white/10 mb-4 relative">
+                <img
+                  src={project.thumbnail}
+                  alt={project.cardTitle}
+                  className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500"
+                />
 
-            return (
-              <motion.div
-                key={project.id}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: '-50px' }}
-                transition={{ duration: 0.5, delay: index * 0.15 }}
-                onHoverStart={() => setHoveredCard(project.id)}
-                onHoverEnd={() => setHoveredCard(null)}
-                className="group relative rounded-3xl bg-[#10121D]/85 backdrop-blur-xl border border-white/10 shadow-lg hover:shadow-[0_0_35px_rgba(245,158,11,0.25)] hover:border-amber-400/80 transition-all duration-300 flex flex-col overflow-hidden"
-              >
-                {/* Image / Viewport Preview Container */}
-                <div className="relative aspect-[16/10] w-full bg-black overflow-hidden border-b border-white/10">
-                  {/* Subtle Urokomon / Tech Pattern Watermark */}
-                  <div className="absolute inset-0 bg-radial from-amber-500/20 via-[#0B0D16] to-black opacity-90" />
+                {/* Subtle dark gradient overlay on hover */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
+              </div>
 
-                  {/* Browser Mockup Pill Header */}
-                  <div className="absolute top-3 inset-x-3 flex items-center justify-between z-10">
-                    <span className="px-2.5 py-0.5 rounded-full bg-black/80 backdrop-blur-md border border-white/10 text-[10px] font-mono font-bold text-amber-400 tracking-wider">
-                      {project.number}
-                    </span>
-                    <div className="flex items-center gap-1">
-                      <span className="w-2 h-2 rounded-full bg-amber-400/80" />
-                      <span className="w-2 h-2 rounded-full bg-neutral-600" />
-                    </div>
-                  </div>
-
-                  {/* Image Placeholder Visual */}
-                  <div className="w-full h-full flex flex-col items-center justify-center p-6 text-center group-hover:scale-105 transition-transform duration-500">
-                    <div className="w-12 h-12 rounded-xl bg-amber-400/20 border border-amber-400/40 flex items-center justify-center text-amber-400 mb-2 shadow-[0_0_20px_rgba(245,158,11,0.35)] group-hover:rotate-6 transition-transform">
-                      <Zap className="w-6 h-6 fill-amber-400" />
-                    </div>
-                    <div className="text-xs font-bold text-white tracking-wide">
-                      {project.image}
-                    </div>
-                    <div className="text-[10px] text-neutral-400 mt-1">
-                      Interactive UI Preview
-                    </div>
-                  </div>
-
-                  {/* Katana diagonal lightning slash on hover */}
-                  <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none bg-gradient-to-tr from-amber-500/20 via-transparent to-amber-400/20" />
-                </div>
-
-                {/* Card Body */}
-                <div className="p-6 sm:p-7 flex-1 flex flex-col justify-between">
-                  <div>
-                    {/* Project Name */}
-                    <h3 className="text-xl font-bold text-white mb-2 group-hover:text-amber-400 transition-colors">
-                      {project.name}
-                    </h3>
-
-                    {/* Short Description */}
-                    <p className="text-sm text-neutral-300 leading-relaxed mb-6">
-                      {project.description}
-                    </p>
-                  </div>
-
-                  <div>
-                    {/* Technology Badges */}
-                    <div className="flex flex-wrap gap-1.5 mb-6">
-                      {project.technologies.map((t) => (
-                        <span
-                          key={t}
-                          className="px-2.5 py-0.5 rounded-full text-[11px] font-mono font-medium bg-[#161828] text-neutral-300 border border-white/10"
-                        >
-                          {t}
-                        </span>
-                      ))}
-                    </div>
-
-                    {/* Action Buttons (View Project & View Code) */}
-                    <div className="grid grid-cols-2 gap-2.5 pt-3 border-t border-white/10">
-                      <a
-                        href={project.liveUrl}
-                        target="_blank"
-                        rel="noreferrer"
-                        className="inline-flex items-center justify-center gap-1.5 py-2 px-3 rounded-full bg-gradient-to-r from-amber-500 to-yellow-500 hover:from-amber-400 hover:to-yellow-400 text-neutral-950 text-xs font-bold transition-all shadow-md shadow-amber-500/20"
-                      >
-                        <span>View Project</span>
-                        <ArrowUpRight className="w-3.5 h-3.5 text-neutral-950" />
-                      </a>
-
-                      <a
-                        href={project.codeUrl}
-                        target="_blank"
-                        rel="noreferrer"
-                        className="inline-flex items-center justify-center gap-1.5 py-2 px-3 rounded-full bg-[#161828] hover:bg-[#1E2135] text-neutral-200 text-xs font-semibold transition-colors border border-white/10"
-                      >
-                        <Code2 className="w-3.5 h-3.5 text-amber-400" />
-                        <span>View Code</span>
-                      </a>
-                    </div>
-                  </div>
-                </div>
-
-              </motion.div>
-            );
-          })}
+              {/* Title & Date */}
+              <div className="px-1 flex flex-col justify-between flex-1">
+                <h3 className="font-bold text-white text-base sm:text-lg group-hover:text-amber-400 transition-colors leading-snug">
+                  {project.cardTitle}
+                </h3>
+                <p className="text-xs font-mono text-neutral-400 mt-1.5">
+                  {project.date}
+                </p>
+              </div>
+            </motion.div>
+          ))}
         </div>
 
-        {/* View More Projects External Button */}
-        <div className="mt-14 text-center">
+        {/* Bottom Button (Matching Reference Image 1) */}
+        <div className="mt-12 text-center">
           <a
             href={portfolioData.socialLinks.github.url}
             target="_blank"
             rel="noreferrer"
-            className="inline-flex items-center gap-2 px-8 py-3.5 rounded-full bg-[#10121D]/90 backdrop-blur-md border border-white/10 hover:border-amber-400 text-white font-semibold text-xs tracking-wider uppercase shadow-md hover:shadow-lg hover:shadow-amber-500/20 transition-all hover:-translate-y-0.5 cursor-pointer"
+            className="inline-flex items-center gap-2.5 px-6 py-2.5 rounded-full bg-[#121422] hover:bg-[#1A1D30] border border-white/15 hover:border-amber-400/60 text-xs font-semibold text-neutral-200 hover:text-white transition-all shadow-md group cursor-pointer"
           >
-            <FolderGit2 className="w-4 h-4 text-amber-400" />
-            <span>View More Projects on GitHub</span>
-            <ArrowUpRight className="w-4 h-4 text-neutral-400" />
+            <span>All projects</span>
+            <ArrowRight className="w-3.5 h-3.5 text-neutral-400 group-hover:text-amber-400 group-hover:translate-x-1 transition-all" />
           </a>
         </div>
-
       </div>
+
+      {/* Interactive Project Detail View / Page Modal (Matching Reference Image 2) */}
+      <AnimatePresence>
+        {selectedProject && (
+          <ProjectDetailView
+            project={selectedProject}
+            onClose={() => setSelectedProject(null)}
+            onPrev={handlePrev}
+            onNext={handleNext}
+          />
+        )}
+      </AnimatePresence>
     </section>
   );
 }

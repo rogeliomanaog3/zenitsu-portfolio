@@ -86,8 +86,11 @@ export default function Contact() {
               </a>
 
               {/* Phone */}
-              <div className="flex items-center gap-4 p-3.5 rounded-2xl bg-[#090A12] border border-white/10">
-                <div className="w-10 h-10 rounded-xl bg-amber-400/15 flex items-center justify-center text-amber-400">
+              <a
+                href={`tel:${personal.phone.replace(/\s+/g, '')}`}
+                className="flex items-center gap-4 p-3.5 rounded-2xl bg-[#090A12] border border-white/10 hover:border-amber-400/60 transition-colors group"
+              >
+                <div className="w-10 h-10 rounded-xl bg-amber-400/15 flex items-center justify-center text-amber-400 group-hover:scale-110 transition-transform">
                   <Phone className="w-5 h-5" />
                 </div>
                 <div>
@@ -96,7 +99,7 @@ export default function Contact() {
                     {personal.phone}
                   </div>
                 </div>
-              </div>
+              </a>
 
               {/* Location */}
               <div className="flex items-center gap-4 p-3.5 rounded-2xl bg-[#090A12] border border-white/10">
@@ -172,7 +175,7 @@ export default function Contact() {
                   Send a Message Directly
                 </h3>
                 <p className="text-xs text-neutral-400 mt-1">
-                  Fill in your details below and I'll get back to you with lightning speed.
+                  Fill in your details below and I'll get back to you soon.
                 </p>
               </div>
 

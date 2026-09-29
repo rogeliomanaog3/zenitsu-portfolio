@@ -5,19 +5,16 @@ import LightningCanvas from './components/LightningCanvas';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import About from './components/About';
-import Experience from './components/Experience';
 import Skills from './components/Skills';
-import FeaturedProject from './components/FeaturedProject';
 import Projects from './components/Projects';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
-import AIAssistant from './components/AIAssistant';
 
 function PortfolioContent() {
   const [activeSection, setActiveSection] = useState('home');
 
   useEffect(() => {
-    const sections = ['home', 'about', 'experience', 'projects', 'skills', 'contact'];
+    const sections = ['home', 'about', 'skills', 'projects', 'contact'];
     
     const handleScroll = () => {
       const scrollY = window.scrollY;
@@ -56,18 +53,13 @@ function PortfolioContent() {
       <main className="relative z-10">
         <Hero />
         <About />
-        <Experience />
         <Skills />
-        <FeaturedProject />
         <Projects />
         <Contact />
       </main>
 
       {/* Footer */}
       <Footer />
-
-      {/* Interactive AI Assistant Drawer (Reference Video Feature) */}
-      <AIAssistant />
     </div>
   );
 }

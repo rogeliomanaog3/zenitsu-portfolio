@@ -18,22 +18,21 @@ export const portfolioData = {
       "Be a good student everyday",
       "Bachelor of Science in Information Technology",
       "Aspiring Full-Stack Developer",
-      "Building Clean, Resilient & Fast Web Solutions",
     ],
     shortIntro:
-      "Information Technology student at National College of Science and Technology. Dedicated to learning, mastering modern full-stack development, and building high-impact digital experiences with lightning precision.",
+      "Information Technology student at National College of Science and Technology in Cavite. Passionate about web development, programming, and building clean, functional applications.",
     bio:
-      "Life is too short. I believe in giving my best every day, staying curious, and building software that solves real problems with clean architecture, speed, and continuous self-improvement.",
+      "Life is too short. I focus on learning every day, improving my programming skills, and building practical software that solves real problems.",
     course: "Bachelor of Science in Information Technology",
     school: "National College of Science and Technology",
-    location: "Pasong Kawayan II, General Trias City, Cavite",
+    location: "Amafel Bldg., Aguinaldo Hi-way, Dasmariñas, Philippines, 4114",
     careerGoal:
-      "Be successful — to continually grow as an accomplished software engineer, architect resilient full-stack applications, and make a meaningful impact through technology.",
+      "Be successful as a software developer, master modern web technologies, and build projects that make a positive impact.",
     profileImage: "/assets/profile.jpg",
-    email: "manaogrogelioiiir@gmail.com",
-    phone: "+63 900 000 0000",
+    email: "rogeliomanaog3@gmail.com",
+    phone: "+63 977 395 5453",
     resumeUrl: "#",
-    status: "Available for Projects & Tech Inquiries",
+    status: "BSIT Student @ NCST",
   },
 
   // About Section Modular Metric Cards
@@ -51,9 +50,9 @@ export const portfolioData = {
       icon: "Code2",
     },
     location: {
-      title: "Location",
-      value: "General Trias City, Cavite",
-      subtitle: "Pasong Kawayan II",
+      title: "Campus Location",
+      value: "Dasmariñas, Cavite",
+      subtitle: "Amafel Bldg., Aguinaldo Hi-way",
       icon: "MapPin",
     },
   },
@@ -86,9 +85,8 @@ export const portfolioData = {
   navigation: [
     { label: "Home", href: "#home" },
     { label: "About", href: "#about" },
-    { label: "Experience", href: "#experience" },
-    { label: "Projects", href: "#projects" },
     { label: "Skills", href: "#skills" },
+    { label: "Projects", href: "#projects" },
     { label: "Contact", href: "#contact" },
   ],
 
@@ -127,7 +125,7 @@ export const portfolioData = {
   skills: [
     {
       category: "Frontend",
-      description: "Crafting reactive, lightning-fast user interfaces with semantic design.",
+      description: "Building responsive, modern, and user-friendly web layouts.",
       items: [
         { name: "HTML", level: "Advanced", icon: "FileCode2" },
         { name: "CSS", level: "Advanced", icon: "Palette" },
@@ -137,7 +135,7 @@ export const portfolioData = {
     },
     {
       category: "Backend",
-      description: "Engineering dependable server architecture and high-throughput logic.",
+      description: "Server-side programming, logic, and API integration.",
       items: [
         { name: "PHP", level: "Intermediate", icon: "Server" },
         { name: "Node.js", level: "Intermediate", icon: "Cpu" },
@@ -147,7 +145,7 @@ export const portfolioData = {
     },
     {
       category: "Database",
-      description: "Relational modeling, distributed document stores, and state queries.",
+      description: "Relational database modeling and data storage.",
       items: [
         { name: "MySQL", level: "Intermediate", icon: "Database" },
         { name: "Firebase", level: "Intermediate", icon: "Flame" },
@@ -155,7 +153,7 @@ export const portfolioData = {
     },
     {
       category: "Tools",
-      description: "Modern developer workflow tools, version control, and design systems.",
+      description: "Version control, design tools, and code editors.",
       items: [
         { name: "Git", level: "Advanced", icon: "GitBranch" },
         { name: "GitHub", level: "Advanced", icon: "Github" },
@@ -195,41 +193,134 @@ export const portfolioData = {
     },
   },
 
-  // Selected Projects (3-Column Grid)
+  // 6 Projects Showcase (Matching User Reference Layout)
   projects: [
     {
-      id: "project-1",
-      number: "PROJECT 01",
-      name: "Interactive Web Application",
-      description:
-        "Dynamic web application engineered with modular components, responsive layouts, and robust client-side routing.",
-      technologies: ["React", "JavaScript", "Tailwind CSS"],
-      image: "Web App UI Preview",
-      liveUrl: "#",
-      codeUrl: "#",
+      id: "go-on-enrollment",
+      title: "Go-On National College Online Enrollment Portal",
+      cardTitle: "Go-On National College Online Enrollment",
+      date: "16.09.2025",
+      tableDate: "2025-09-16",
+      category: "WEB / PORTAL",
+      categoryFull: "Web Application / Portal",
+      craftedBy: "@tztn",
+      deployedOn: "▲ gncp-main.site.je",
+      liveUrl: "gncp-main.site.je/school-website",
+      liveUrlFull: "https://gncp-main.site.je/school-website",
+      status: "Active & Verified",
+      statusType: "active",
+      stack: "Web Application • Online Enrollment • Responsive UI • Student Portal • PHP / MySQL • JavaScript",
+      technologies: ["PHP", "MySQL", "JavaScript", "Responsive UI", "Student Portal"],
+      thumbnail: "/assets/projects/go-on-campus-thumb.png",
+      heroImage: "/assets/projects/go-on-campus-large.png",
+      lead: "A comprehensive academic admissions and online student enrollment platform engineered for Go-On National College in Cavite.",
+      description: "Designed to modernize institutional admissions and eliminate manual in-person queues, this web platform provides prospective students and transferees with a seamless, end-to-end digital enrollment experience from program exploration to document submission.",
+      overview: "The system features interactive academic program guides, multi-stage student registration, prerequisite validation, tuition payment schedule tracking, and centralized applicant records management.",
+      architecture: {
+        title: "Architecture & Design System",
+        subtitle: "Technical Architecture | Web Application / Portal",
+        points: [
+          "Relational MySQL database models mapping academic programs, student applicant records, prerequisite validation, and matriculation workflows.",
+          "Componentized responsive user interface optimized for smooth mobile, tablet, and desktop admissions browsing.",
+          "Asynchronous form validation pipeline providing real-time feedback on document uploads, Form 137 eligibility, and personal data compliance.",
+          "Scalable PHP backend architecture with modular service layers, session authentication, and automated audit logging."
+        ]
+      },
+      highlights: {
+        title: "Key Implementations & Highlights",
+        subtitle: "Core Contributions | 4 Key Deliverables",
+        points: [
+          "Multi-stage digital enrollment wizard with progress state preservation and applicant resumption tokens.",
+          "Automated student registration ID generation and dynamic application status tracker.",
+          "Administrative dashboard for college registrars allowing one-click verification and batch document approvals.",
+          "Eliminated manual paper queuing, reducing peak admissions turnaround time by over 65%."
+        ]
+      }
     },
     {
-      id: "project-2",
-      number: "PROJECT 02",
-      name: "Backend REST API Service",
-      description:
-        "Scalable backend API server and data management portal with relational schema models and automated endpoint validation.",
-      technologies: ["Node.js", "Express", "MySQL", "Postman"],
-      image: "REST API Architecture Preview",
-      liveUrl: "#",
-      codeUrl: "#",
+      id: "sneakrs-concept",
+      title: "SNEAKRS Landing Concept & UI Design",
+      cardTitle: "SNEAKRS Landing Concept & UI Design",
+      date: "21.06.2025",
+      tableDate: "2025-06-21",
+      category: "UI/UX / CONCEPT",
+      categoryFull: "E-Commerce / Concept Experience",
+      craftedBy: "@tztn",
+      deployedOn: "▲ sneakrs-ui.concept",
+      liveUrl: "sneakrs-concept.preview",
+      liveUrlFull: "https://sneakrs-concept.preview",
+      status: "Concept Preview",
+      statusType: "active",
+      stack: "React • Tailwind CSS • Framer Motion • Figma UI • Interactive 3D Showcase • Mobile First",
+      technologies: ["React", "Tailwind CSS", "Framer Motion", "Figma", "UI/UX"],
+      thumbnail: "/assets/projects/sneakrs-thumb.png",
+      heroImage: "/assets/projects/sneakrs-large.png",
+      lead: "A futuristic athletic footwear showcase and interactive digital storefront concept.",
+      description: "Engineered with high-contrast brutalist aesthetics, editorial typography, and fluid micro-interactions to showcase next-generation hyper-limited footwear drops with immersive visual impact.",
+      overview: "Features interactive 360 perspective product visualizers, drop countdown tickers, dynamic size selector chips, curated trending drops grid, and an instant slide-over shopping bag.",
+      architecture: {
+        title: "Architecture & Design System",
+        subtitle: "Technical Architecture | UI/UX Concept & Design System",
+        points: [
+          "High-contrast editorial typography system paired with ultra-fluid responsive CSS grid layouts.",
+          "Spring-physics gesture interactions implemented via Framer Motion for intuitive tactile feedback on swipe and drag.",
+          "Component-driven modular design system prototyped end-to-end in Figma prior to production code conversion.",
+          "Optimized asset rendering pipeline ensuring instantaneous render times for high-density footwear renders."
+        ]
+      },
+      highlights: {
+        title: "Key Implementations & Highlights",
+        subtitle: "Core Contributions | 4 Key Deliverables",
+        points: [
+          "Dynamic drop notification engine allowing shoppers to subscribe to limited-edition release alerts.",
+          "Interactive sizing selector matrix with real-time stock indicator and localized size conversions.",
+          "Silky smooth spring transitions and floating slide-over checkout cart drawer.",
+          "Responsive mobile navigation with bottom thumb-zone controls for effortless one-handed browsing."
+        ]
+      }
     },
     {
-      id: "project-3",
-      number: "PROJECT 03",
-      name: "Real-Time Utility Dashboard",
-      description:
-        "Cross-platform developer utility and automated dashboard built for real-time monitoring and seamless state synchronization.",
-      technologies: ["Python", "Firebase", "Git", "Figma"],
-      image: "Monitoring Dashboard Preview",
-      liveUrl: "#",
-      codeUrl: "#",
-    },
+      id: "ncst-lost-found",
+      title: "NCST Campus Lost & Found Web Portal",
+      cardTitle: "NCST Campus Lost & Found Web Portal",
+      date: "18.11.2024",
+      tableDate: "2024-11-18",
+      category: "WEB / CAMPUS",
+      categoryFull: "Campus Lost & Found Web Portal",
+      craftedBy: "@tztn",
+      deployedOn: "ncst-lostandfound.local",
+      liveUrl: "ncst-lostandfound.local",
+      liveUrlFull: "https://ncst-lostandfound.local",
+      status: "Campus Tested",
+      statusType: "active",
+      stack: "PHP • MySQL • Bootstrap • JavaScript • Session Authentication • File Uploads",
+      technologies: ["PHP", "MySQL", "Bootstrap", "JavaScript", "Session Auth"],
+      thumbnail: "/assets/projects/ncst-lostfound-thumb.png",
+      heroImage: "/assets/projects/ncst-lostfound-large.png",
+      lead: "A centralized campus web portal for reporting, tracking, and claiming lost items at NCST.",
+      description: "Engineered specifically for the National College of Science and Technology campus to eliminate misplaced items chaos and connect students directly with campus security archives.",
+      overview: "The system features item registration with photographic evidence, location and category tagging, claim request verification, and custodial status logs.",
+      architecture: {
+        title: "Architecture & Design System",
+        subtitle: "Technical Architecture | Campus Web Portal / Management",
+        points: [
+          "Normalized MySQL relational database schema linking student ID numbers, item records, and claim verification tickets.",
+          "Secure image upload pipeline with server-side mime validation and automatic thumbnail generation.",
+          "Session-based student and faculty authentication restricting post submissions to valid institutional users.",
+          "Clean responsive UI built with Bootstrap and custom CSS for seamless access across mobile phones and campus kiosks."
+        ]
+      },
+      highlights: {
+        title: "Key Implementations & Highlights",
+        subtitle: "Core Contributions | 4 Key Deliverables",
+        points: [
+          "Instant lost item reporting form supporting multi-photo uploads, location tags, and timestamp recording.",
+          "Smart category filters (student ID cards, flash drives, calculators, gadgets, notebooks, keys).",
+          "Verification workflow for campus security guards to inspect claimant proof of ownership before releasing items.",
+          "Archived recovery audit trail reducing lost property disputes and increasing recovery rates by over 70%."
+        ]
+      }
+    }
   ],
 
   // Zenitsu / Thunder Breathing subtle theme accents & easter eggs
@@ -238,28 +329,5 @@ export const portfolioData = {
     japaneseTitle: "雷の呼吸 • 壱ノ型 霹靂一閃",
     accentColor: "#F59E0B",
     secondaryColor: "#F97316",
-  },
-
-  // AI Assistant Pre-Loaded Knowledge Base
-  aiKnowledge: {
-    welcomeMessage:
-      "Greetings! I am the Thunder AI Assistant for Rogelio's portfolio. How can I help you explore my projects, technical stack, or background?",
-    faqs: [
-      {
-        question: "What is your main technical stack?",
-        answer:
-          "My core stack spans modern Frontend (React, JavaScript, HTML, CSS), Backend services (Node.js, PHP, Python, Java), relational & NoSQL databases (MySQL, Firebase), and standard tooling (Git, GitHub, Figma, VS Code).",
-      },
-      {
-        question: "What course and school do you attend?",
-        answer:
-          "I am pursuing a Bachelor of Science in Information Technology (BSIT) at the National College of Science and Technology (NCST).",
-      },
-      {
-        question: "What is your motto and career goal?",
-        answer:
-          "My personal motto is 'Life is too short' and 'Be a good student everyday'. My goal is to be successful—continually mastering software engineering and creating impactful digital solutions.",
-      },
-    ],
   },
 };
