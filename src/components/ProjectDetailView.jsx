@@ -279,9 +279,13 @@ export default function ProjectDetailView({ project, onClose, onPrev, onNext }) 
                 <div className="text-[10px] font-mono font-bold text-neutral-400 uppercase tracking-wider mb-1">
                   CRAFTED BY
                 </div>
-                <div className="text-xs sm:text-sm font-mono font-bold text-white">
+                <a
+                  href={`mailto:${project.craftedBy}`}
+                  className="text-xs sm:text-sm font-mono font-bold text-white hover:text-amber-400 transition-colors break-all block"
+                  title={`Email ${project.craftedBy}`}
+                >
                   {project.craftedBy}
-                </div>
+                </a>
               </div>
 
               {/* Row 1, Col 2: Date */}
