@@ -171,13 +171,15 @@ export default function Hero() {
               <span>Clean Code</span>
             </div>
 
-            {/* Center Developer / Student Avatar Icon (FRNKLYNRD Style - Clean Ninja/User Silhouette) */}
-            <div className="relative w-28 h-28 sm:w-32 sm:h-32 rounded-full bg-gradient-to-b from-amber-400/25 to-amber-500/10 border-2 border-amber-400/60 flex items-center justify-center mb-4 shadow-[0_0_25px_rgba(245,158,11,0.35)] group-hover:scale-105 transition-transform duration-300">
-              {/* Stylized Ninja / Developer Icon */}
-              <div className="relative z-10 w-16 h-16 rounded-full bg-amber-400/20 flex items-center justify-center text-amber-300">
-                <User className="w-10 h-10 drop-shadow-[0_0_12px_rgba(245,158,11,0.8)]" />
+            {/* Center Developer / Student Profile Photo */}
+            <div className="relative w-28 h-28 sm:w-32 sm:h-32 rounded-full p-1 bg-gradient-to-b from-amber-400 via-amber-500 to-yellow-500 shadow-[0_0_25px_rgba(245,158,11,0.45)] mb-4 group-hover:scale-105 transition-transform duration-300">
+              <div className="w-full h-full rounded-full overflow-hidden bg-neutral-900 border-2 border-[#0E1019]">
+                <img
+                  src={personal.profileImage}
+                  alt={personal.name}
+                  className="w-full h-full object-cover object-top"
+                />
               </div>
-              <div className="absolute inset-0 rounded-full bg-radial from-amber-400/30 via-transparent to-transparent pointer-events-none" />
             </div>
 
             {/* Profile Name & Academic Tag */}

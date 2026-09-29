@@ -46,25 +46,21 @@ export default function About() {
             <div className="relative w-full max-w-sm rounded-3xl p-3 bg-[#111320]/90 backdrop-blur-xl border border-amber-400/40 shadow-xl shadow-amber-500/10 group">
               
               {/* Image Frame */}
-              <div className="w-full aspect-[4/5] rounded-2xl bg-[#090A12] border border-white/10 flex flex-col items-center justify-center p-8 text-center relative overflow-hidden">
+              <div className="w-full aspect-[4/5] rounded-2xl bg-[#090A12] border border-amber-400/30 relative overflow-hidden group">
+                <img
+                  src={personal.profileImage}
+                  alt={personal.name}
+                  className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500"
+                />
                 
-                <div className="absolute inset-0 bg-radial from-amber-500/15 via-transparent to-black/60 pointer-events-none" />
-
-                {/* Profile Placeholder Icon */}
-                <div className="relative z-10 w-24 h-24 rounded-full bg-amber-400/15 border-2 border-dashed border-amber-400/60 flex items-center justify-center text-amber-400 mb-4 group-hover:scale-105 transition-transform duration-300 shadow-[0_0_20px_rgba(245,158,11,0.3)]">
-                  <User className="w-10 h-10 text-amber-300" />
-                </div>
-
-                <div className="relative z-10 font-bold text-lg text-white mb-1">
-                  {personal.profileImage}
-                </div>
-                <div className="relative z-10 text-xs text-neutral-400 max-w-[200px]">
-                  Place your headshot or avatar image here
-                </div>
+                {/* Subtle dark ambient gradient at the bottom for readability */}
+                <div className="absolute inset-0 bg-gradient-to-t from-[#090A12]/90 via-transparent to-transparent pointer-events-none" />
 
                 {/* Bottom Tag */}
-                <div className="absolute bottom-4 px-3 py-1 rounded-full bg-[#141624]/90 backdrop-blur-md border border-amber-400/40 text-[11px] font-mono font-semibold text-amber-400 z-10">
-                  ⚡ STATUS: {personal.status}
+                <div className="absolute bottom-4 left-4 right-4 flex items-center justify-center">
+                  <div className="px-3.5 py-1.5 rounded-full bg-[#141624]/90 backdrop-blur-md border border-amber-400/40 text-[11px] font-mono font-semibold text-amber-400 shadow-lg shadow-black/60">
+                    ⚡ STATUS: {personal.status}
+                  </div>
                 </div>
               </div>
             </div>

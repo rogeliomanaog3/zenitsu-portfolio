@@ -29,7 +29,7 @@ export const portfolioData = {
     location: "Pasong Kawayan II, General Trias City, Cavite",
     careerGoal:
       "Be successful — to continually grow as an accomplished software engineer, architect resilient full-stack applications, and make a meaningful impact through technology.",
-    profileImage: "Manaog, Rogelio III R.",
+    profileImage: "/assets/profile.jpg",
     email: "manaogrogelioiiir@gmail.com",
     phone: "+63 900 000 0000",
     resumeUrl: "#",
