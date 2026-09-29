@@ -61,8 +61,8 @@ export const portfolioData = {
   socialLinks: {
     github: {
       name: "GitHub",
-      url: "https://github.com",
-      placeholder: "github.com/rogeliomanaog",
+      url: "https://github.com/rogeliomanaog3",
+      placeholder: "github.com/rogeliomanaog3",
     },
     linkedin: {
       name: "LinkedIn",
@@ -203,7 +203,7 @@ export const portfolioData = {
       tableDate: "2025-09-16",
       category: "WEB / PORTAL",
       categoryFull: "Web Application / Portal",
-      craftedBy: "@tztn",
+      craftedBy: "Manaog, Rogelio III R.",
       deployedOn: "▲ gncp-main.site.je",
       liveUrl: "gncp-main.site.je/school-website",
       liveUrlFull: "https://gncp-main.site.je/school-website",
@@ -245,7 +245,7 @@ export const portfolioData = {
       tableDate: "2025-06-21",
       category: "UI/UX / CONCEPT",
       categoryFull: "E-Commerce / Concept Experience",
-      craftedBy: "@tztn",
+      craftedBy: "Manaog, Rogelio III R.",
       deployedOn: "▲ sneakrs-ui.concept",
       liveUrl: "sneakrs-concept.preview",
       liveUrlFull: "https://sneakrs-concept.preview",
@@ -287,7 +287,7 @@ export const portfolioData = {
       tableDate: "2024-11-18",
       category: "WEB / CAMPUS",
       categoryFull: "Campus Lost & Found Web Portal",
-      craftedBy: "@tztn",
+      craftedBy: "Manaog, Rogelio III R.",
       deployedOn: "ncst-lostandfound.local",
       liveUrl: "ncst-lostandfound.local",
       liveUrlFull: "https://ncst-lostandfound.local",
