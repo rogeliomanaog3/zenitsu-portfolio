@@ -1,21 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { portfolioData } from '../data/portfolioData';
-import { useTheme } from '../context/ThemeContext';
-import { GithubIcon, LinkedinIcon } from './Icons';
-import {
-  Sun,
-  Moon,
-  Menu,
-  X,
-  Zap,
-  Play,
-  Pause,
-  Send,
-} from 'lucide-react';
+import { Menu, X, Send } from 'lucide-react';
 
 export default function Navbar({ activeSection }) {
-  const { theme, toggleTheme, isLiveBgActive, toggleLiveBg } = useTheme();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
@@ -89,33 +77,8 @@ export default function Navbar({ activeSection }) {
             })}
           </ul>
 
-          {/* Action Elements: Live BG Button, Let's Talk CTA, Socials & Theme */}
+          {/* Action Elements: Let's Talk CTA & Mobile Menu */}
           <div className="flex items-center gap-1.5 sm:gap-2">
-            
-            {/* Live BG Toggle */}
-            <button
-              onClick={toggleLiveBg}
-              aria-label="Toggle Live Background"
-              className={`flex items-center gap-1.5 px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-full text-[11px] font-mono font-bold transition-all cursor-pointer ${
-                isLiveBgActive
-                  ? 'bg-amber-400/20 text-amber-300 border border-amber-400/40 shadow-[0_0_10px_rgba(245,158,11,0.25)]'
-                  : 'bg-neutral-800/80 text-neutral-400 border border-neutral-700 hover:text-neutral-200'
-              }`}
-            >
-              {isLiveBgActive ? (
-                <>
-                  <span className="w-1.5 h-1.5 rounded-full bg-amber-400 animate-pulse" />
-                  <Play className="w-3 h-3 fill-amber-400 text-amber-400" />
-                  <span className="hidden sm:inline">Live BG</span>
-                </>
-              ) : (
-                <>
-                  <Pause className="w-3 h-3 text-neutral-400" />
-                  <span className="hidden sm:inline">Paused BG</span>
-                </>
-              )}
-            </button>
-
             {/* Quick "Let's Talk" CTA Button */}
             <a
               href="#contact"
@@ -125,40 +88,6 @@ export default function Navbar({ activeSection }) {
               <Send className="w-3 h-3" />
               <span>Let's Talk</span>
             </a>
-
-            {/* Social Icons */}
-            <a
-              href={portfolioData.socialLinks.github.url}
-              target="_blank"
-              rel="noreferrer"
-              aria-label="GitHub Profile"
-              className="p-1.5 sm:p-2 text-neutral-400 hover:text-amber-400 hover:bg-white/5 rounded-full transition-colors"
-            >
-              <GithubIcon className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
-            </a>
-
-            <a
-              href={portfolioData.socialLinks.linkedin.url}
-              target="_blank"
-              rel="noreferrer"
-              aria-label="LinkedIn Profile"
-              className="p-1.5 sm:p-2 text-neutral-400 hover:text-amber-400 hover:bg-white/5 rounded-full transition-colors"
-            >
-              <LinkedinIcon className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
-            </a>
-
-            {/* Theme Toggle */}
-            <button
-              onClick={toggleTheme}
-              aria-label="Toggle Theme"
-              className="p-1.5 sm:p-2 text-neutral-400 hover:text-amber-400 hover:bg-white/5 rounded-full transition-colors cursor-pointer"
-            >
-              {theme === 'dark' ? (
-                <Sun className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-amber-400" />
-              ) : (
-                <Moon className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-neutral-300" />
-              )}
-            </button>
 
             {/* Mobile Menu Toggle */}
             <button
