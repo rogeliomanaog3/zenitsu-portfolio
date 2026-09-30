@@ -1,129 +1,142 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { motion } from 'framer-motion';
-import { portfolioData } from '../data/portfolioData';
-import { GithubIcon, FigmaIcon } from './Icons';
 import {
-  Code,
+  Layers,
   Server,
   Database,
-  Zap,
-  Sparkles,
-  Layers,
-  Terminal,
-  Cpu,
-  Boxes,
-  Flame,
-  GitBranch,
-  Laptop,
-  Palette,
-  FileCode2,
+  Wrench,
 } from 'lucide-react';
 
-const iconMap = {
-  FileCode2: FileCode2,
-  Palette: Palette,
-  Sparkles: Sparkles,
-  Layers: Layers,
-  Server: Server,
-  Cpu: Cpu,
-  Terminal: Terminal,
-  Boxes: Boxes,
-  Database: Database,
-  Flame: Flame,
-  GitBranch: GitBranch,
-  Github: GithubIcon,
-  Laptop: Laptop,
-  Figma: FigmaIcon,
-};
+const specPods = [
+  {
+    title: 'FRONTEND',
+    icon: Layers,
+    color: '#00D2FF',
+    borderColor: 'border-[#0088FF]/50 hover:border-[#00D2FF]',
+    glowColor: 'shadow-[0_0_20px_rgba(0,136,255,0.25)]',
+    badgeBg: 'bg-[#0088FF]/20 text-[#00D2FF] border-[#00D2FF]/40',
+    slashColor: 'bg-[#00D2FF]',
+    items: ['React', 'Next.js', 'HTML', 'CSS', 'JavaScript'],
+  },
+  {
+    title: 'BACKEND',
+    icon: Server,
+    color: '#FF6A00',
+    borderColor: 'border-[#FF6A00]/50 hover:border-[#FF6A00]',
+    glowColor: 'shadow-[0_0_20px_rgba(255,106,0,0.25)]',
+    badgeBg: 'bg-[#FF6A00]/20 text-[#FF6A00] border-[#FF6A00]/40',
+    slashColor: 'bg-[#FF6A00]',
+    items: ['Node.js', 'Express.js', 'PHP', 'Python', 'Java'],
+  },
+  {
+    title: 'DATABASE',
+    icon: Database,
+    color: '#FFD400',
+    borderColor: 'border-[#FFD400]/50 hover:border-[#FFD400]',
+    glowColor: 'shadow-[0_0_20px_rgba(255,212,0,0.25)]',
+    badgeBg: 'bg-[#FFD400]/20 text-[#FFD400] border-[#FFD400]/40',
+    slashColor: 'bg-[#FFD400]',
+    items: ['MySQL', 'PostgreSQL', 'MongoDB', 'Firebase'],
+  },
+  {
+    title: 'TOOLS',
+    icon: Wrench,
+    color: '#A855F7',
+    borderColor: 'border-[#A855F7]/50 hover:border-[#C084FC]',
+    glowColor: 'shadow-[0_0_20px_rgba(168,85,247,0.25)]',
+    badgeBg: 'bg-[#A855F7]/20 text-[#C084FC] border-[#A855F7]/40',
+    slashColor: 'bg-[#C084FC]',
+    items: ['Git', 'GitHub', 'VS Code', 'Docker', 'Figma'],
+  },
+];
 
 export default function Skills() {
-  const { skills } = portfolioData;
-  const [hoveredSkill, setHoveredSkill] = useState(null);
-
   return (
-    <section id="skills" className="py-24 px-4 sm:px-6 lg:px-8 relative z-10">
-      {/* Background Accent */}
-      <div className="absolute bottom-10 left-1/3 w-80 h-80 bg-amber-500/10 rounded-full blur-[140px] pointer-events-none -z-10" />
+    <section id="skills" className="relative h-full flex flex-col justify-stretch">
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.6 }}
+        className="w-full h-full rounded-2xl sm:rounded-3xl border border-[#0088FF]/30 shadow-[0_15px_45px_rgba(0,0,0,0.85)] bg-[#070B18]/95 backdrop-blur-xl p-6 sm:p-7 flex flex-col justify-between relative overflow-hidden"
+      >
+        {/* Header */}
+        <div className="flex items-center justify-between mb-6 pb-3 border-b border-white/10">
+          <div>
+            <div className="flex items-center gap-2 text-xs font-mono font-bold tracking-widest text-[#00D2FF] uppercase mb-1">
+              <span className="text-sm">🏁</span>
+              <span>MY SKILLS</span>
+            </div>
 
-      <div className="max-w-6xl w-full mx-auto">
-        {/* Section Header */}
-        <div className="mb-16 text-center sm:text-left">
-          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-amber-400/15 border border-amber-400/30 text-amber-400 text-xs font-semibold tracking-widest uppercase mb-3">
-            <Zap className="w-3 h-3 fill-amber-400 text-amber-400" />
-            <span>WHAT I USE</span>
-          </div>
-          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold tracking-tight text-white">
-            Skills & Technologies
-          </h2>
-          <p className="text-neutral-400 mt-2 text-sm sm:text-base max-w-xl">
-            My core technical arsenal honed for reliability, speed, and clean code craftsmanship.
-          </p>
-          <div className="w-16 h-1 bg-gradient-to-r from-amber-500 to-yellow-400 rounded-full mt-4 sm:mx-0 mx-auto" />
-        </div>
+            <div className="flex items-center gap-3">
+              <h2 className="text-xl sm:text-2xl lg:text-3xl font-black italic uppercase tracking-tight text-white speed-font">
+                TECHNICAL <span className="text-[#00D2FF] drop-shadow-[0_0_12px_rgba(0,210,255,0.6)]">SPECIFICATIONS</span>
+              </h2>
 
-        {/* Categorized Rows (Reference Video Layout Inspiration) */}
-        <div className="space-y-10">
-          {skills.map((group, groupIdx) => (
-            <motion.div
-              key={group.category}
-              initial={{ opacity: 0, y: 25 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: '-50px' }}
-              transition={{ duration: 0.5, delay: groupIdx * 0.1 }}
-              className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center p-6 sm:p-8 rounded-3xl bg-[#111320]/80 backdrop-blur-xl border border-white/10 shadow-lg hover:border-amber-400/40 transition-all duration-300"
-            >
-              {/* Category Info (4 cols) */}
-              <div className="lg:col-span-4">
-                <div className="flex items-center gap-2.5 mb-2">
-                  <span className="w-2.5 h-2.5 rounded-full bg-amber-400 shadow-[0_0_10px_rgba(245,158,11,0.9)]" />
-                  <h3 className="text-xl sm:text-2xl font-bold text-white">
-                    {group.category}
-                  </h3>
+              {/* Skewed Checkered Flag Accent */}
+              <div className="hidden sm:flex items-center -skew-x-12 opacity-85">
+                <div className="grid grid-cols-4 grid-rows-2 gap-[2px] w-6 h-3">
+                  <div className="bg-[#00D2FF]" />
+                  <div className="bg-transparent border border-[#00D2FF]/40" />
+                  <div className="bg-white" />
+                  <div className="bg-transparent border border-white/40" />
+                  <div className="bg-transparent border border-[#00D2FF]/40" />
+                  <div className="bg-[#00D2FF]" />
+                  <div className="bg-transparent border border-white/40" />
+                  <div className="bg-white" />
                 </div>
-                <p className="text-sm text-neutral-400 leading-relaxed">
-                  {group.description}
-                </p>
               </div>
-
-              {/* Skill Cards Grid (8 cols) */}
-              <div className="lg:col-span-8 grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4">
-                {group.items.map((skill) => {
-                  const IconComponent = iconMap[skill.icon] || Code;
-
-                  return (
-                    <motion.div
-                      key={skill.name}
-                      onHoverStart={() => setHoveredSkill(skill.name)}
-                      onHoverEnd={() => setHoveredSkill(null)}
-                      whileHover={{ y: -4, scale: 1.02 }}
-                      transition={{ type: 'spring', stiffness: 400, damping: 25 }}
-                      className="p-4 sm:p-5 rounded-2xl bg-[#0B0D16] border border-white/10 flex flex-col items-center justify-center text-center relative group overflow-hidden cursor-default shadow-xs hover:shadow-xl hover:shadow-amber-500/20 hover:border-amber-400/80 transition-all duration-300"
-                    >
-                      {/* Katana subtle sheen on hover */}
-                      <div className="absolute inset-0 opacity-0 group-hover:opacity-100 bg-gradient-to-tr from-amber-400/20 via-transparent to-transparent transition-opacity duration-300 pointer-events-none" />
-
-                      {/* Icon */}
-                      <div className="w-11 h-11 rounded-xl bg-[#161826] group-hover:bg-amber-400/20 flex items-center justify-center text-neutral-300 group-hover:text-amber-400 transition-colors mb-3">
-                        <IconComponent className="w-5 h-5 group-hover:scale-110 transition-transform" />
-                      </div>
-
-                      {/* Skill Name */}
-                      <span className="text-sm font-bold text-white">
-                        {skill.name}
-                      </span>
-
-                      {/* Level Indicator Pill */}
-                      <span className="text-[10px] uppercase font-mono font-medium text-neutral-500 group-hover:text-amber-400 mt-1">
-                        {skill.level}
-                      </span>
-                    </motion.div>
-                  );
-                })}
-              </div>
-            </motion.div>
-          ))}
+            </div>
+          </div>
         </div>
-      </div>
+
+        {/* 4 Cyber Angled Specification Pods Grid (2x2) */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5 flex-1">
+          {specPods.map((pod) => {
+            const Icon = pod.icon;
+
+            return (
+              <div
+                key={pod.title}
+                className={`p-4 sm:p-5 rounded-2xl bg-[#040711]/90 border ${pod.borderColor} ${pod.glowColor} transition-all duration-300 flex flex-col justify-between relative cyber-chamfer group hover:-translate-y-1`}
+              >
+                <div>
+                  {/* Pod Header */}
+                  <div className="flex items-center gap-2.5 mb-4 pb-3 border-b border-white/5">
+                    <div className={`w-8 h-8 rounded-lg ${pod.badgeBg} border flex items-center justify-center`}>
+                      <Icon className="w-4 h-4" />
+                    </div>
+                    <div className="text-xs sm:text-sm font-black tracking-wider uppercase text-white">
+                      {pod.title}
+                    </div>
+                  </div>
+
+                  {/* Skills List with Cyber Diamond Bullets */}
+                  <ul className="space-y-2 text-xs font-mono">
+                    {pod.items.map((tech) => (
+                      <li key={tech} className="flex items-center gap-2 text-neutral-300 group-hover:text-white transition-colors">
+                        <span style={{ color: pod.color }} className="text-[10px]">
+                          ◆
+                        </span>
+                        <span>{tech}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+
+                {/* Diagonal Accent Slashes on Bottom-Right */}
+                <div className="mt-4 pt-3 flex justify-end gap-1 opacity-70">
+                  <span className={`w-1 h-3 rounded-xs ${pod.slashColor} transform -skew-x-12`} />
+                  <span className={`w-1 h-3 rounded-xs ${pod.slashColor} transform -skew-x-12`} />
+                  <span className={`w-1 h-3 rounded-xs ${pod.slashColor} transform -skew-x-12`} />
+                  <span className={`w-1 h-3 rounded-xs ${pod.slashColor} transform -skew-x-12`} />
+                </div>
+              </div>
+            );
+          })}
+        </div>
+
+      </motion.div>
     </section>
   );
 }
