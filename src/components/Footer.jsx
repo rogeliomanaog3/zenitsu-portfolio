@@ -1,7 +1,7 @@
 import React from 'react';
 import { portfolioData } from '../data/portfolioData';
 import { GithubIcon, LinkedinIcon } from './Icons';
-import { Mail, Zap, ArrowUp } from 'lucide-react';
+import { Mail, Flame, ArrowUp } from 'lucide-react';
 
 export default function Footer() {
   const { personal, socialLinks } = portfolioData;
@@ -11,26 +11,26 @@ export default function Footer() {
   };
 
   return (
-    <footer className="relative border-t border-white/10 bg-[#07080D]/90 backdrop-blur-md pt-12 pb-16 px-4 sm:px-6 lg:px-8 z-10">
-      {/* Katana subtle divider line highlight */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-48 h-[2px] bg-gradient-to-r from-transparent via-amber-400 to-transparent shadow-[0_0_12px_rgba(245,158,11,0.8)]" />
+    <footer className="relative border-t border-white/10 bg-[#050505]/95 backdrop-blur-md pt-12 pb-16 px-4 sm:px-6 lg:px-8 z-10">
+      {/* Hot Wheels Dual Racing Stripe at Top Border */}
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-72 h-[3px] bg-gradient-to-r from-transparent via-[#E10600] to-transparent shadow-[0_0_15px_#E10600]" />
 
       <div className="max-w-6xl w-full mx-auto flex flex-col items-center justify-between gap-8 sm:flex-row">
         
-        {/* Brand & Credit */}
+        {/* Brand & Racing Credit */}
         <div className="flex flex-col items-center sm:items-start text-center sm:text-left">
-          <div className="flex items-center gap-2 mb-2 font-bold text-white">
-            <span className="w-6 h-6 rounded-full bg-amber-400/20 flex items-center justify-center text-amber-400">
-              <Zap className="w-3.5 h-3.5 fill-amber-400" />
+          <div className="flex items-center gap-2.5 mb-2 font-black text-white">
+            <span className="w-7 h-7 rounded-lg bg-gradient-to-br from-[#E10600] to-[#FF6A00] flex items-center justify-center text-white shadow-[0_0_10px_rgba(225,6,0,0.5)]">
+              <Flame className="w-4 h-4 fill-white" />
             </span>
-            <span className="tracking-tight text-base font-extrabold">{personal.name}</span>
-            <span className="text-[10px] font-mono px-2 py-0.5 rounded-full bg-[#161828] text-amber-400 border border-amber-400/30 uppercase tracking-widest">
-              雷 • 壱ノ型
+            <span className="tracking-tight text-base uppercase">{personal.name}</span>
+            <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-[#E10600]/20 text-[#FFD400] border border-[#E10600]/40 uppercase tracking-widest font-bold">
+              #03 RACER
             </span>
           </div>
 
-          <p className="text-xs text-neutral-400">
-            Designed & Built by <span className="font-semibold text-neutral-200">{personal.name}</span>
+          <p className="text-xs text-neutral-400 font-mono">
+            Designed & Engineered for High Velocity • <span className="font-semibold text-neutral-200">{personal.school}</span>
           </p>
 
           <p className="text-[11px] text-neutral-500 mt-1 font-mono">
@@ -38,16 +38,16 @@ export default function Footer() {
           </p>
         </div>
 
-        {/* Links & Quick Back to Top */}
+        {/* Minimal Navigation & Social Links */}
         <div className="flex items-center gap-3">
           <a
             href={socialLinks.github.url}
             target="_blank"
             rel="noreferrer"
             aria-label="GitHub"
-            className="p-2.5 rounded-full bg-[#141624] hover:bg-amber-400/20 text-neutral-400 hover:text-amber-400 transition-colors border border-white/10"
+            className="p-2.5 rounded-xl bg-black/60 hover:bg-[#E10600]/20 text-neutral-400 hover:text-white transition-colors border border-white/10 hover:border-[#E10600]/50"
           >
-            <GithubIcon className="w-4 h-4" />
+            <GithubIcon className="w-4 h-4 text-[#FF1A00]" />
           </a>
 
           <a
@@ -55,24 +55,25 @@ export default function Footer() {
             target="_blank"
             rel="noreferrer"
             aria-label="LinkedIn"
-            className="p-2.5 rounded-full bg-[#141624] hover:bg-amber-400/20 text-neutral-400 hover:text-amber-400 transition-colors border border-white/10"
+            className="p-2.5 rounded-xl bg-black/60 hover:bg-[#FF6A00]/20 text-neutral-400 hover:text-white transition-colors border border-white/10 hover:border-[#FF6A00]/50"
           >
-            <LinkedinIcon className="w-4 h-4" />
+            <LinkedinIcon className="w-4 h-4 text-[#FF6A00]" />
           </a>
 
           <a
             href={`mailto:${personal.email}`}
             aria-label="Email"
-            className="p-2.5 rounded-full bg-[#141624] hover:bg-amber-400/20 text-neutral-400 hover:text-amber-400 transition-colors border border-white/10"
+            className="p-2.5 rounded-xl bg-black/60 hover:bg-[#FFD400]/20 text-neutral-400 hover:text-[#FFD400] transition-colors border border-white/10 hover:border-[#FFD400]/50"
           >
             <Mail className="w-4 h-4" />
           </a>
 
-          {/* Back to Top */}
+          {/* Back to Starting Line Button */}
           <button
             onClick={scrollToTop}
-            aria-label="Scroll back to top"
-            className="ml-2 p-2.5 rounded-full bg-gradient-to-r from-amber-500 to-yellow-500 text-neutral-950 hover:from-amber-400 hover:to-yellow-400 transition-all shadow-md shadow-amber-500/20 cursor-pointer"
+            aria-label="Back to starting line"
+            className="ml-2 p-2.5 rounded-xl bg-gradient-to-r from-[#E10600] to-[#FF6A00] text-white hover:from-[#FF1A00] hover:to-[#FFD400] transition-all shadow-[0_0_15px_rgba(225,6,0,0.4)] cursor-pointer"
+            title="Return to Starting Line"
           >
             <ArrowUp className="w-4 h-4" />
           </button>

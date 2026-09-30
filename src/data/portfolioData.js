@@ -15,9 +15,10 @@ export const portfolioData = {
     role: "Bachelor of Science in Information Technology",
     // Roles cycled in the dynamic typewriter hero effect:
     typewriterRoles: [
-      "Be a good student everyday",
+      "Building digital experiences at full speed 🏎️",
+      "Full-Stack Web Developer",
       "Bachelor of Science in Information Technology",
-      "Aspiring Full-Stack Developer",
+      "Speed. Code. Accelerate.",
     ],
     shortIntro:
       "Information Technology student at National College of Science and Technology in Cavite. Passionate about web development, programming, and building clean, functional applications.",
@@ -323,11 +324,21 @@ export const portfolioData = {
     }
   ],
 
-  // Zenitsu / Thunder Breathing subtle theme accents & easter eggs
-  zenitsuTheme: {
-    mantra: "Master one technique to absolute perfection.",
-    japaneseTitle: "雷の呼吸 • 壱ノ型 霹靂一閃",
-    accentColor: "#F59E0B",
-    secondaryColor: "#F97316",
+  // Hot Wheels Racing Theme Configuration
+  racingTheme: {
+    tagline: "BUILDING DIGITAL EXPERIENCES AT FULL SPEED",
+    driverNumber: "#03",
+    driverName: "ROGELIO MANAOG",
+    racingDivision: "NCST RACING DIVISION // CAVITE, PH",
+    colors: {
+      black: "#050505",
+      charcoal: "#0E0E12",
+      red: "#E10600",
+      brightRed: "#FF1A00",
+      orange: "#FF6A00",
+      yellow: "#FFD400",
+      white: "#FFFFFF",
+      gray: "#B8B8B8",
+    },
   },
 };

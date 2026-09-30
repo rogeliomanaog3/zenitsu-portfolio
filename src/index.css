@@ -2,130 +2,161 @@
 
 @layer base {
   :root {
-    --color-bg-base: #08090D;
-    --color-bg-surface: #10111A;
-    --color-border: #232533;
-    --color-text-main: #F8FAFC;
-    --color-text-muted: #94A3B8;
-    --color-gold: #FBBF24;
-    --color-gold-glow: rgba(251, 191, 36, 0.35);
-  }
-
-  /* Accessible Light Mode option */
-  html:not(.dark) {
-    --color-bg-base: #FAFAFA;
-    --color-bg-surface: #FFFFFF;
-    --color-border: #E5E7EB;
-    --color-text-main: #0F172A;
-    --color-text-muted: #64748B;
-    --color-gold: #F59E0B;
-    --color-gold-glow: rgba(245, 158, 11, 0.25);
+    --color-bg-base: #050505;
+    --color-bg-surface: #0e0e13;
+    --color-border: #1f2029;
+    --color-text-main: #FFFFFF;
+    --color-text-muted: #B8B8B8;
+    --hw-red: #E10600;
+    --hw-bright-red: #FF1A00;
+    --hw-orange: #FF6A00;
+    --hw-yellow: #FFD400;
   }
 
   body {
-    background-color: var(--color-bg-base);
-    color: var(--color-text-main);
+    background-color: #050505;
+    color: #FFFFFF;
     font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    overflow-x: hidden;
+    selection-background-color: #E10600;
+    selection-color: #FFFFFF;
+  }
+
+  ::selection {
+    background-color: #E10600;
+    color: #FFFFFF;
   }
 }
 
-/* Custom golden scrollbar */
+/* Hot Wheels Racing Red Scrollbar */
 ::-webkit-scrollbar {
   width: 7px;
 }
 ::-webkit-scrollbar-track {
-  background: rgba(8, 9, 13, 0.8);
+  background: #050505;
 }
 ::-webkit-scrollbar-thumb {
-  background: rgba(245, 158, 11, 0.4);
+  background: linear-gradient(180deg, #E10600 0%, #FF6A00 100%);
   border-radius: 9999px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(245, 158, 11, 0.7);
+  background: linear-gradient(180deg, #FF1A00 0%, #FFD400 100%);
 }
 
-/* Glassmorphic Panels */
-.glass-panel-dark {
-  background: rgba(16, 17, 26, 0.72);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-}
-
-.glass-panel-dark:hover {
-  border-color: rgba(245, 158, 11, 0.4);
-}
-
-/* Neon Golden Glow Utilities */
-.neon-gold-border {
-  border-color: rgba(245, 158, 11, 0.6);
-  box-shadow: 0 0 20px rgba(245, 158, 11, 0.25), inset 0 0 15px rgba(245, 158, 11, 0.12);
-}
-
-.neon-gold-glow-lg {
-  box-shadow: 0 0 35px rgba(245, 158, 11, 0.35);
-}
-
-.neon-gold-glow-sm {
-  box-shadow: 0 0 14px rgba(245, 158, 11, 0.25);
-}
-
-.gold-gradient-text {
-  background: linear-gradient(135deg, #FFFBEB 0%, #FEF08A 30%, #F59E0B 70%, #D97706 100%);
+/* Hot Wheels Flame Gradient Text */
+.flame-gradient-text {
+  background: linear-gradient(135deg, #FFFFFF 0%, #FFD400 25%, #FF6A00 65%, #E10600 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
-/* Japanese Urokomon (Triangle) Subtle Motif */
-.urokomon-pattern {
-  background-image: radial-gradient(rgba(245, 158, 11, 0.06) 1px, transparent 0);
-  background-size: 24px 24px;
+.flame-gradient-text-pure {
+  background: linear-gradient(135deg, #FFD400 0%, #FF6A00 50%, #E10600 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
-/* Katana Slash Diagonal Decorative Line */
-.katana-line {
+/* Chrome Metallic Gradient Text */
+.chrome-gradient-text {
+  background: linear-gradient(180deg, #FFFFFF 0%, #F1F5F9 45%, #94A3B8 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Carbon Fiber Weave Texture */
+.carbon-panel {
+  background-color: #0d0d12;
+  background-image: 
+    radial-gradient(rgba(225, 6, 0, 0.04) 1px, transparent 0),
+    linear-gradient(45deg, rgba(255, 255, 255, 0.015) 25%, transparent 25%, transparent 75%, rgba(255, 255, 255, 0.015) 75%),
+    linear-gradient(45deg, rgba(255, 255, 255, 0.015) 25%, transparent 25%, transparent 75%, rgba(255, 255, 255, 0.015) 75%);
+  background-size: 16px 16px, 12px 12px, 12px 12px;
+  background-position: 0 0, 0 0, 6px 6px;
+}
+
+/* Checkered Racing Ribbon Pattern */
+.checkered-pattern {
+  background-image: 
+    linear-gradient(45deg, #111 25%, transparent 25%), 
+    linear-gradient(-45deg, #111 25%, transparent 25%), 
+    linear-gradient(45deg, transparent 75%, #111 75%), 
+    linear-gradient(-45deg, transparent 75%, #111 75%);
+  background-size: 12px 12px;
+  background-position: 0 0, 0 6px, 6px -6px, -6px 0px;
+}
+
+.checkered-accent {
+  background-image: 
+    linear-gradient(45deg, #E10600 25%, transparent 25%), 
+    linear-gradient(-45deg, #E10600 25%, transparent 25%), 
+    linear-gradient(45deg, transparent 75%, #E10600 75%), 
+    linear-gradient(-45deg, transparent 75%, #E10600 75%);
+  background-size: 8px 8px;
+  background-position: 0 0, 0 4px, 4px -4px, -4px 0px;
+}
+
+/* Hot Wheels Racing Glows */
+.neon-red-glow {
+  box-shadow: 0 0 25px rgba(225, 6, 0, 0.35);
+}
+
+.neon-orange-glow {
+  box-shadow: 0 0 25px rgba(255, 106, 0, 0.35);
+}
+
+.neon-yellow-glow {
+  box-shadow: 0 0 25px rgba(255, 212, 0, 0.35);
+}
+
+/* Diagonal Speed Reflection Light Sweep */
+.speed-sweep {
   position: relative;
   overflow: hidden;
 }
-.katana-line::after {
+
+.speed-sweep::after {
   content: '';
   position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(245, 158, 11, 0.8), transparent);
-  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-}
-.katana-line:hover::after {
-  transform: translateX(200%);
-}
-
-/* Smooth Marquee ticker animation */
-@keyframes marquee {
-  0% { transform: translateX(0%); }
-  100% { transform: translateX(-50%); }
-}
-
-.animate-marquee {
-  display: flex;
-  width: 200%;
-  animation: marquee 28s linear infinite;
-}
-.animate-marquee:hover {
-  animation-play-state: paused;
+  top: -50%;
+  left: -70%;
+  width: 50%;
+  height: 200%;
+  background: linear-gradient(
+    60deg,
+    transparent 0%,
+    rgba(255, 106, 0, 0.15) 45%,
+    rgba(255, 255, 255, 0.4) 50%,
+    rgba(225, 6, 0, 0.15) 55%,
+    transparent 100%
+  );
+  transform: rotate(25deg);
+  opacity: 0;
+  transition: transform 0.65s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s;
+  pointer-events: none;
 }
 
-/* Subtle satellite badge float */
-@keyframes satellite-float {
-  0%, 100% { transform: translateY(0px); }
-  50% { transform: translateY(-4px); }
+.speed-sweep:hover::after {
+  transform: rotate(25deg) translate(300%, 0);
+  opacity: 1;
 }
 
-.animate-satellite {
-  animation: satellite-float 3.5s ease-in-out infinite;
+/* Speed Track Lines Animation */
+@keyframes speed-line-anim {
+  0% { transform: translateY(-100%); opacity: 0; }
+  50% { opacity: 0.8; }
+  100% { transform: translateY(200%); opacity: 0; }
 }
 
-.animate-satellite-delay {
-  animation: satellite-float 3.5s ease-in-out infinite 1.75s;
+.animate-speed-line {
+  animation: speed-line-anim 2.5s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+/* Racing Tachometer Pulse */
+@keyframes tachometer-pulse {
+  0%, 100% { opacity: 0.8; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.03); }
+}
+
+.animate-tach-pulse {
+  animation: tachometer-pulse 1.8s ease-in-out infinite;
 }
