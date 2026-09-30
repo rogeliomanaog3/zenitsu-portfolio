@@ -4,7 +4,7 @@ import { ArrowRight, ExternalLink } from 'lucide-react';
 import { portfolioData } from '../data/portfolioData';
 import ProjectDetailView from './ProjectDetailView';
 
-// 6 Projects mapped to match the 2x3 mockup layout with real assets
+// 3 Authentic Projects (No duplicates)
 const featuredCards = [
   {
     num: '01',
@@ -13,58 +13,28 @@ const featuredCards = [
     tags: ['PHP', 'MySQL', 'JavaScript'],
     image: '/assets/projects/go-on-campus-large.png',
     projectId: 'go-on-enrollment',
-    borderColor: 'border-[#0088FF]/40 hover:border-[#00D2FF]',
-    glowColor: 'hover:shadow-[0_0_25px_rgba(0,210,255,0.3)]',
+    borderColor: 'border-[#0088FF]/50 hover:border-[#00D2FF]',
+    glowColor: 'hover:shadow-[0_0_20px_rgba(0,210,255,0.25)]',
   },
   {
     num: '02',
-    numColor: 'bg-[#FF6A00] text-white',
-    title: 'SNEAKRS Footwear Concept',
+    numColor: 'bg-[#FF5500] text-black font-black',
+    title: 'SNEAKRS Footwear Concept & UI',
     tags: ['React', 'Tailwind', 'Framer Motion'],
     image: '/assets/projects/sneakrs-large.png',
     projectId: 'sneakrs-concept',
-    borderColor: 'border-[#FF6A00]/40 hover:border-[#FF6A00]',
-    glowColor: 'hover:shadow-[0_0_25px_rgba(255,106,0,0.3)]',
+    borderColor: 'border-[#FF5500]/50 hover:border-[#FF6A00]',
+    glowColor: 'hover:shadow-[0_0_20px_rgba(255,85,0,0.25)]',
   },
   {
     num: '03',
     numColor: 'bg-[#FFD400] text-black font-black',
-    title: 'NCST Campus Lost & Found',
+    title: 'NCST Campus Lost & Found Web Portal',
     tags: ['PHP', 'Bootstrap', 'MySQL'],
     image: '/assets/projects/ncst-lostfound-large.png',
     projectId: 'ncst-lost-found',
-    borderColor: 'border-[#FFD400]/40 hover:border-[#FFD400]',
-    glowColor: 'hover:shadow-[0_0_25px_rgba(255,212,0,0.3)]',
-  },
-  {
-    num: '04',
-    numColor: 'bg-[#0088FF] text-white',
-    title: 'Modern Developer Portfolio',
-    tags: ['React', 'Vite', 'Tailwind CSS'],
-    image: '/assets/projects/go-on-campus-thumb.png',
-    projectId: 'go-on-enrollment',
-    borderColor: 'border-[#0088FF]/40 hover:border-[#00D2FF]',
-    glowColor: 'hover:shadow-[0_0_25px_rgba(0,210,255,0.3)]',
-  },
-  {
-    num: '05',
-    numColor: 'bg-[#FF6A00] text-white',
-    title: 'Interactive Digital Storefront',
-    tags: ['Next.js', 'Node.js', 'PostgreSQL'],
-    image: '/assets/projects/sneakrs-thumb.png',
-    projectId: 'sneakrs-concept',
-    borderColor: 'border-[#FF6A00]/40 hover:border-[#FF6A00]',
-    glowColor: 'hover:shadow-[0_0_25px_rgba(255,106,0,0.3)]',
-  },
-  {
-    num: '06',
-    numColor: 'bg-[#00D2FF] text-black font-black',
-    title: 'Campus Management Dashboard',
-    tags: ['React', 'Node.js', 'MongoDB'],
-    image: '/assets/projects/ncst-lostfound-thumb.png',
-    projectId: 'ncst-lost-found',
-    borderColor: 'border-[#00D2FF]/40 hover:border-[#00D2FF]',
-    glowColor: 'hover:shadow-[0_0_25px_rgba(0,210,255,0.3)]',
+    borderColor: 'border-[#FFD400]/50 hover:border-[#FFD400]',
+    glowColor: 'hover:shadow-[0_0_20px_rgba(255,212,0,0.25)]',
   },
 ];
 
@@ -160,7 +130,7 @@ export default function Projects() {
                   <span className={`px-1.5 py-0.5 rounded text-[10px] font-mono font-bold shrink-0 ${card.numColor}`}>
                     {card.num}
                   </span>
-                  <h3 className="text-xs sm:text-sm font-bold text-white group-hover:text-[#00D2FF] transition-colors line-clamp-1 leading-snug">
+                  <h3 className="text-xs sm:text-sm font-bold text-white group-hover:text-[#00D2FF] transition-colors line-clamp-2 leading-snug">
                     {card.title}
                   </h3>
                 </div>
