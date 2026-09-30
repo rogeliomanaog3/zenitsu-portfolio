@@ -68,10 +68,10 @@ export default function Projects() {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.6 }}
-        className="w-full h-full rounded-2xl sm:rounded-3xl border border-[#0088FF]/30 shadow-[0_15px_45px_rgba(0,0,0,0.85)] bg-[#070B18]/95 backdrop-blur-xl p-6 sm:p-7 flex flex-col justify-between relative overflow-hidden"
+        className="w-full h-full rounded-2xl sm:rounded-3xl border border-[#0088FF]/30 bg-[#070B18] p-6 sm:p-7 flex flex-col justify-start relative overflow-hidden"
       >
         {/* Section Header */}
-        <div className="flex items-center justify-between mb-8 pb-3 border-b border-white/10">
+        <div className="flex items-center justify-between mb-5 pb-3 border-b border-white/10">
           <div>
             <div className="flex items-center gap-2 text-xs font-mono font-bold tracking-widest text-[#00D2FF] uppercase mb-1">
               <div className="flex gap-0.5 opacity-80">
