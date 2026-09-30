@@ -67,19 +67,15 @@ export default function Contact() {
           <img
             src="/assets/hotwheels/stadium_finish.jpg"
             alt="Stadium Finish Line"
-            className="w-full h-full object-cover object-right opacity-30 sm:opacity-40"
+            className="w-full h-full object-cover object-right opacity-25"
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-[#070B18] via-[#070B18]/80 to-transparent" />
-          <div className="absolute inset-0 bg-gradient-to-t from-[#070B18] via-transparent to-transparent" />
+          <div className="absolute inset-0 bg-[#070B18]/70" />
         </div>
-
-        {/* Diagonal Cyber Racing Accent Slashes at Top Right */}
-        <div className="absolute top-0 right-0 w-32 h-2 bg-gradient-to-l from-[#FF6A00] to-transparent pointer-events-none" />
 
         {/* Top/Main Row */}
         <div className="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
           
-          {/* Left Column: Heading, Subtitle & CTA (7 cols) */}
+          {/* Left Column: Heading, Subtitle & CTA (6 cols) */}
           <div className="lg:col-span-6 flex flex-col justify-between">
             {/* Header Badge */}
             <div className="flex items-center gap-2 text-xs font-mono font-bold tracking-widest text-[#00D2FF] uppercase mb-2">
@@ -90,7 +86,7 @@ export default function Contact() {
             {/* Slanted Title */}
             <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black italic uppercase tracking-tight text-white leading-tight speed-font">
               READY TO BUILD<br />
-              <span className="flame-speed-text">SOMETHING GREAT?</span>
+              <span className="text-[#FF5500]">SOMETHING GREAT?</span>
             </h2>
 
             <p className="text-xs sm:text-sm text-neutral-300 font-sans mt-2 max-w-md font-medium">
@@ -101,7 +97,7 @@ export default function Contact() {
             <div className="mt-5">
               <a
                 href={`mailto:${personal.email}?subject=Collaboration%20Inquiry%20via%20Portfolio`}
-                className="inline-flex items-center gap-2 px-6 py-2.5 rounded-md bg-gradient-to-r from-[#FF3B00] via-[#FF6A00] to-[#FFA800] text-black font-black uppercase text-xs sm:text-sm tracking-wider speed-font transform -skew-x-12 hover:brightness-110 shadow-[0_0_25px_rgba(255,106,0,0.5)] transition-all cursor-pointer group"
+                className="inline-flex items-center gap-2 px-6 py-2.5 rounded-md bg-[#FF5500] hover:bg-[#FF6A00] text-black font-black uppercase text-xs sm:text-sm tracking-wider speed-font transform -skew-x-12 transition-all cursor-pointer group shadow-[0_0_20px_rgba(255,85,0,0.5)]"
               >
                 <span className="inline-block transform skew-x-12">CONTACT ME</span>
                 <span className="inline-block transform skew-x-12 group-hover:translate-x-1 transition-transform font-black">
@@ -113,9 +109,9 @@ export default function Contact() {
 
           {/* Right Column: Cyber HUD Telemetry Channel Pods (6 cols) */}
           <div className="lg:col-span-6">
-            <div className="p-4 sm:p-5 rounded-2xl bg-[#030612]/90 border border-[#0088FF]/30 backdrop-blur-md shadow-[0_0_25px_rgba(0,0,0,0.6)] relative overflow-hidden">
-              {/* Subtle top indicator bar */}
-              <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-[#00D2FF] via-[#0088FF] to-transparent opacity-80" />
+            <div className="p-4 sm:p-5 rounded-2xl bg-[#030612] border border-[#0088FF]/30 shadow-xl relative overflow-hidden">
+              {/* Top indicator bar */}
+              <div className="absolute top-0 left-0 right-0 h-[2px] bg-[#00D2FF] opacity-80" />
 
               <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
                 {contactChannels.map((item) => (

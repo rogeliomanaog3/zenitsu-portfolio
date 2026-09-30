@@ -20,15 +20,14 @@ export default function GarageBanner() {
             alt="Garage Track Banner"
             className="w-full h-full object-cover object-center opacity-85"
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-[#040711]/95 via-[#040711]/70 to-transparent pointer-events-none" />
-          <div className="absolute inset-0 bg-gradient-to-t from-[#040711]/80 via-transparent to-transparent pointer-events-none" />
+          <div className="absolute inset-0 bg-[#040711]/60 pointer-events-none" />
         </div>
 
         {/* Content */}
         <div className="relative z-10 max-w-sm">
           <h2 className="text-2xl sm:text-3xl font-black italic uppercase tracking-tight text-white leading-tight speed-font mb-2">
             MORE PROJECTS<br />
-            <span className="flame-speed-text">IN MY GARAGE</span>
+            <span className="text-[#FF5500]">IN MY GARAGE</span>
           </h2>
           <p className="text-xs sm:text-sm text-neutral-300 font-sans font-medium uppercase tracking-wide">
             EXPLORE ALL OF MY WORKS AND SEE WHAT I'VE BUILT SO FAR.

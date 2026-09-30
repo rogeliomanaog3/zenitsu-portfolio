@@ -70,7 +70,7 @@ export default function Skills() {
 
             <div className="flex items-center gap-3">
               <h2 className="text-xl sm:text-2xl lg:text-3xl font-black italic uppercase tracking-tight text-white speed-font">
-                TECHNICAL <span className="text-[#00D2FF] drop-shadow-[0_0_12px_rgba(0,210,255,0.6)]">SPECIFICATIONS</span>
+                TECHNICAL <span className="text-[#00D2FF]">SPECIFICATIONS</span>
               </h2>
 
               {/* Skewed Checkered Flag Accent */}

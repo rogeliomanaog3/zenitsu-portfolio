@@ -113,7 +113,7 @@ export default function Projects() {
 
             <div className="flex items-center gap-3">
               <h2 className="text-xl sm:text-3xl font-black italic uppercase tracking-tight text-white">
-                FEATURED <span className="text-[#00D2FF] drop-shadow-[0_0_12px_rgba(0,210,255,0.6)]">PROJECTS</span>
+                FEATURED <span className="text-[#00D2FF]">PROJECTS</span>
               </h2>
 
               <div className="hidden sm:flex gap-0.5 opacity-80">
@@ -151,9 +151,8 @@ export default function Projects() {
                   <img
                     src={card.image}
                     alt={card.title}
-                    className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500"
+                    className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-300"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent pointer-events-none" />
                 </div>
 
                 {/* Project Number + Title */}

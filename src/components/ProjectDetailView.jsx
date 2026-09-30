@@ -152,7 +152,6 @@ export default function ProjectDetailView({ project, onClose, onPrev, onNext }) 
                 alt={project.title}
                 className="w-full h-auto object-cover max-h-[520px]"
               />
-              <div className="absolute inset-0 bg-gradient-to-tr from-amber-400/5 via-transparent to-transparent pointer-events-none" />
             </div>
           </div>
 
@@ -360,9 +359,9 @@ export default function ProjectDetailView({ project, onClose, onPrev, onNext }) 
           <div className="my-12 text-center">
             <button
               onClick={onClose}
-              className="inline-flex items-center gap-2.5 px-8 py-3.5 rounded-full bg-gradient-to-r from-amber-500 via-amber-400 to-yellow-500 hover:from-amber-400 hover:to-yellow-400 text-neutral-950 font-bold text-sm shadow-xl shadow-amber-500/25 hover:shadow-amber-500/40 hover:scale-105 active:scale-95 transition-all duration-300 cursor-pointer"
+              className="inline-flex items-center gap-2.5 px-8 py-3 rounded-full bg-[#FF5500] hover:bg-[#FF6A00] text-black font-black uppercase text-xs sm:text-sm tracking-wider hover:scale-105 active:scale-95 transition-all duration-300 cursor-pointer shadow-[0_0_20px_rgba(255,85,0,0.5)]"
             >
-              <ArrowLeft className="w-4 h-4 text-neutral-950" />
+              <ArrowLeft className="w-4 h-4 text-black font-bold" />
               <span>Back to Projects Overview</span>
             </button>
           </div>
