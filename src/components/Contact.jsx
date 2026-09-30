@@ -11,11 +11,8 @@ import {
   Mail,
   Phone,
   MapPin,
-  Flag,
-  Flame,
-  Send,
-  CheckCircle2,
   Zap,
+  CheckCircle2,
 } from 'lucide-react';
 
 export default function Contact() {
@@ -39,61 +36,50 @@ export default function Contact() {
       setSubmitted(true);
       setFormData({ name: '', email: '', message: '' });
       setTimeout(() => setSubmitted(false), 5000);
-    }, 600);
+    }, 700);
   };
 
   return (
-    <section id="contact" className="py-24 sm:py-32 px-4 sm:px-6 lg:px-8 relative z-10">
-      {/* Background Volumetric Heat Glow */}
-      <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-[#E10600]/12 rounded-full blur-[180px] pointer-events-none -z-10" />
+    <section id="contact" className="py-24 px-4 sm:px-6 lg:px-8 relative z-10">
+      {/* Background Glow */}
+      <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-amber-500/10 rounded-full blur-[140px] pointer-events-none -z-10" />
 
       <div className="max-w-6xl w-full mx-auto">
-        
-        {/* Section Header: The Finish Line */}
+        {/* Section Header */}
         <div className="mb-16 text-center sm:text-left">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#E10600]/15 border border-[#E10600]/40 text-[#FF6A00] text-xs font-mono font-bold tracking-widest uppercase mb-3 shadow-[0_0_12px_rgba(225,6,0,0.3)]">
-            <Flag className="w-3.5 h-3.5 fill-[#E10600] text-[#E10600]" />
-            <span>SECTION 04 // THE FINISH LINE</span>
+          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-amber-400/15 border border-amber-400/30 text-amber-400 text-xs font-semibold tracking-widest uppercase mb-3">
+            <Zap className="w-3 h-3 fill-amber-400 text-amber-400" />
+            <span>LET'S CONNECT</span>
           </div>
-
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight text-white uppercase flex items-center justify-center sm:justify-start gap-3">
-            <span>READY TO BUILD SOMETHING AWESOME?</span>
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold tracking-tight text-white">
+            Have a project in mind?
           </h2>
-
-          <p className="text-neutral-400 mt-2 text-sm sm:text-base max-w-xl font-mono">
-            Cross the finish line together. Let's discuss high-velocity development opportunities, internships, or production web applications.
+          <p className="text-neutral-400 mt-2 text-sm sm:text-base max-w-xl">
+            Let's discuss development opportunities, internships, or building something impactful together.
           </p>
-
-          {/* Checkered Racing Accent Bar */}
-          <div className="w-24 h-1.5 bg-gradient-to-r from-[#E10600] via-[#FF6A00] to-[#FFD400] rounded-full mt-4 sm:mx-0 mx-auto shadow-[0_0_10px_#FF6A00]" />
+          <div className="w-16 h-1 bg-gradient-to-r from-amber-500 to-yellow-400 rounded-full mt-4 sm:mx-0 mx-auto" />
         </div>
 
-        {/* Two-Column Contact & Dispatch Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-start">
+        {/* Two-Column Grid: Contact Information & Direct Form */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
           
-          {/* Left Column: Direct Communication Channels (5 Cols) */}
+          {/* Left Column: Contact Cards & Social Channels (5 cols) */}
           <div className="lg:col-span-5 space-y-6">
             
-            {/* Direct Channel Cards in Carbon Finish */}
-            <div className="p-6 rounded-3xl carbon-panel border border-[#E10600]/30 shadow-xl space-y-4">
-              <div className="text-xs font-mono font-black uppercase text-[#FF6A00] tracking-wider mb-2 flex items-center gap-2">
-                <Flame className="w-4 h-4 fill-[#FF1A00] text-[#FF1A00]" />
-                <span>PIT CREW DIRECT LINES</span>
-              </div>
+            {/* Direct Channel Cards */}
+            <div className="p-6 rounded-3xl bg-[#10121D]/85 backdrop-blur-xl border border-white/10 shadow-lg space-y-4">
               
               {/* Email */}
               <a
                 href={`mailto:${personal.email}`}
-                className="flex items-center gap-4 p-4 rounded-2xl bg-black/60 border border-white/10 hover:border-[#E10600] transition-all group speed-sweep"
+                className="flex items-center gap-4 p-3.5 rounded-2xl bg-[#090A12] border border-white/10 hover:border-amber-400/60 transition-colors group"
               >
-                <div className="w-11 h-11 rounded-xl bg-[#E10600]/15 border border-[#E10600]/30 flex items-center justify-center text-[#FF1A00] group-hover:scale-110 transition-transform">
+                <div className="w-10 h-10 rounded-xl bg-amber-400/15 flex items-center justify-center text-amber-400 group-hover:scale-110 transition-transform">
                   <Mail className="w-5 h-5" />
                 </div>
                 <div>
-                  <div className="text-[10px] font-mono font-bold text-neutral-400 uppercase tracking-wider">
-                    DIRECT EMAIL
-                  </div>
-                  <div className="text-sm font-bold text-white group-hover:text-[#FF6A00] transition-colors break-all">
+                  <div className="text-xs text-neutral-400 font-medium">Direct Email</div>
+                  <div className="text-sm font-bold text-white">
                     {personal.email}
                   </div>
                 </div>
@@ -102,31 +88,27 @@ export default function Contact() {
               {/* Phone */}
               <a
                 href={`tel:${personal.phone.replace(/\s+/g, '')}`}
-                className="flex items-center gap-4 p-4 rounded-2xl bg-black/60 border border-white/10 hover:border-[#FF6A00] transition-all group speed-sweep"
+                className="flex items-center gap-4 p-3.5 rounded-2xl bg-[#090A12] border border-white/10 hover:border-amber-400/60 transition-colors group"
               >
-                <div className="w-11 h-11 rounded-xl bg-[#FF6A00]/15 border border-[#FF6A00]/30 flex items-center justify-center text-[#FF6A00] group-hover:scale-110 transition-transform">
+                <div className="w-10 h-10 rounded-xl bg-amber-400/15 flex items-center justify-center text-amber-400 group-hover:scale-110 transition-transform">
                   <Phone className="w-5 h-5" />
                 </div>
                 <div>
-                  <div className="text-[10px] font-mono font-bold text-neutral-400 uppercase tracking-wider">
-                    PHONE / WHATSAPP
-                  </div>
-                  <div className="text-sm font-bold text-white group-hover:text-[#FFD400] transition-colors">
+                  <div className="text-xs text-neutral-400 font-medium">Phone / WhatsApp</div>
+                  <div className="text-sm font-bold text-white">
                     {personal.phone}
                   </div>
                 </div>
               </a>
 
               {/* Location */}
-              <div className="flex items-center gap-4 p-4 rounded-2xl bg-black/60 border border-white/10">
-                <div className="w-11 h-11 rounded-xl bg-[#FFD400]/15 border border-[#FFD400]/30 flex items-center justify-center text-[#FFD400]">
+              <div className="flex items-center gap-4 p-3.5 rounded-2xl bg-[#090A12] border border-white/10">
+                <div className="w-10 h-10 rounded-xl bg-amber-400/15 flex items-center justify-center text-amber-400">
                   <MapPin className="w-5 h-5" />
                 </div>
                 <div>
-                  <div className="text-[10px] font-mono font-bold text-neutral-400 uppercase tracking-wider">
-                    BASE / HEADQUARTERS
-                  </div>
-                  <div className="text-xs sm:text-sm font-bold text-white leading-snug">
+                  <div className="text-xs text-neutral-400 font-medium">Current Location</div>
+                  <div className="text-sm font-bold text-white">
                     {personal.location}
                   </div>
                 </div>
@@ -134,147 +116,146 @@ export default function Contact() {
 
             </div>
 
-            {/* Social Network Telemetry Strip */}
-            <div className="p-6 rounded-3xl carbon-panel border border-white/10 shadow-lg">
-              <div className="text-xs font-mono font-black tracking-wider uppercase text-neutral-400 mb-4 flex items-center justify-between">
-                <span>RACING CHANNELS</span>
-                <span className="text-[#FF6A00]">ONLINE</span>
+            {/* Social Channels Strip */}
+            <div className="p-6 rounded-3xl bg-[#10121D]/85 backdrop-blur-xl border border-white/10 shadow-lg">
+              <div className="text-xs font-mono font-bold tracking-wider uppercase text-neutral-400 mb-4">
+                Connect on Social Networks
               </div>
-
               <div className="grid grid-cols-2 gap-3">
                 <a
                   href={socialLinks.github.url}
                   target="_blank"
                   rel="noreferrer"
-                  className="flex items-center gap-2.5 p-3 rounded-2xl bg-black/60 hover:bg-[#E10600]/15 border border-white/10 text-neutral-300 hover:text-white hover:border-[#E10600]/50 transition-colors"
+                  className="flex items-center gap-2.5 p-3 rounded-2xl bg-[#090A12] hover:bg-amber-400/15 border border-white/10 text-neutral-300 hover:text-amber-400 hover:border-amber-400/40 transition-colors"
                 >
-                  <GithubIcon className="w-4 h-4 text-[#FF1A00]" />
-                  <span className="text-xs font-bold font-mono truncate">{socialLinks.github.placeholder}</span>
+                  <GithubIcon className="w-4 h-4" />
+                  <span className="text-xs font-semibold">{socialLinks.github.placeholder}</span>
                 </a>
 
                 <a
                   href={socialLinks.linkedin.url}
                   target="_blank"
                   rel="noreferrer"
-                  className="flex items-center gap-2.5 p-3 rounded-2xl bg-black/60 hover:bg-[#FF6A00]/15 border border-white/10 text-neutral-300 hover:text-white hover:border-[#FF6A00]/50 transition-colors"
+                  className="flex items-center gap-2.5 p-3 rounded-2xl bg-[#090A12] hover:bg-amber-400/15 border border-white/10 text-neutral-300 hover:text-amber-400 hover:border-amber-400/40 transition-colors"
                 >
-                  <LinkedinIcon className="w-4 h-4 text-[#FF6A00]" />
-                  <span className="text-xs font-bold font-mono truncate">{socialLinks.linkedin.placeholder}</span>
+                  <LinkedinIcon className="w-4 h-4" />
+                  <span className="text-xs font-semibold">{socialLinks.linkedin.placeholder}</span>
                 </a>
 
                 <a
                   href={socialLinks.facebook.url}
                   target="_blank"
                   rel="noreferrer"
-                  className="flex items-center gap-2.5 p-3 rounded-2xl bg-black/60 hover:bg-white/10 border border-white/10 text-neutral-300 hover:text-white transition-colors"
+                  className="flex items-center gap-2.5 p-3 rounded-2xl bg-[#090A12] hover:bg-amber-400/15 border border-white/10 text-neutral-300 hover:text-amber-400 hover:border-amber-400/40 transition-colors"
                 >
                   <FacebookIcon className="w-4 h-4" />
-                  <span className="text-xs font-bold font-mono truncate">{socialLinks.facebook.placeholder}</span>
+                  <span className="text-xs font-semibold">{socialLinks.facebook.placeholder}</span>
                 </a>
 
                 <a
                   href={socialLinks.instagram.url}
                   target="_blank"
                   rel="noreferrer"
-                  className="flex items-center gap-2.5 p-3 rounded-2xl bg-black/60 hover:bg-white/10 border border-white/10 text-neutral-300 hover:text-white transition-colors"
+                  className="flex items-center gap-2.5 p-3 rounded-2xl bg-[#090A12] hover:bg-amber-400/15 border border-white/10 text-neutral-300 hover:text-amber-400 hover:border-amber-400/40 transition-colors"
                 >
                   <InstagramIcon className="w-4 h-4" />
-                  <span className="text-xs font-bold font-mono truncate">{socialLinks.instagram.placeholder}</span>
+                  <span className="text-xs font-semibold">{socialLinks.instagram.placeholder}</span>
                 </a>
               </div>
             </div>
 
           </div>
 
-          {/* Right Column: Pit Stop Radio / Dispatcher Form (7 Cols) */}
+          {/* Right Column: Contact Form (7 cols) */}
           <div className="lg:col-span-7">
-            <div className="p-7 sm:p-8 rounded-3xl carbon-panel border-2 border-[#E10600]/40 shadow-2xl relative overflow-hidden">
-              <div className="flex items-center justify-between pb-4 mb-6 border-b border-white/10">
-                <div className="flex items-center gap-2">
-                  <Zap className="w-4 h-4 text-[#FFD400]" />
-                  <span className="text-xs font-mono font-black uppercase text-white tracking-widest">
-                    PIT STOP TELEMETRY RADIO
-                  </span>
-                </div>
-                <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-[#E10600] text-white font-bold">
-                  TRANSMISSION CHANNEL
-                </span>
+            <div className="p-8 sm:p-10 rounded-3xl bg-[#10121D]/90 backdrop-blur-xl border border-white/10 shadow-xl relative overflow-hidden">
+              
+              <div className="mb-6">
+                <h3 className="text-xl font-bold text-white">
+                  Send a Message Directly
+                </h3>
+                <p className="text-xs text-neutral-400 mt-1">
+                  Fill in your details below and I'll get back to you soon.
+                </p>
               </div>
 
               {submitted ? (
                 <motion.div
                   initial={{ opacity: 0, scale: 0.95 }}
                   animate={{ opacity: 1, scale: 1 }}
-                  className="p-8 rounded-2xl bg-[#E10600]/15 border border-[#E10600]/40 text-center space-y-3"
+                  className="p-8 rounded-2xl bg-amber-400/15 border border-amber-400/40 text-center flex flex-col items-center"
                 >
-                  <div className="w-12 h-12 rounded-full bg-gradient-to-tr from-[#E10600] to-[#FF6A00] flex items-center justify-center text-white mx-auto shadow-lg">
+                  <div className="w-12 h-12 rounded-full bg-amber-500 text-neutral-950 flex items-center justify-center mb-3 shadow-lg shadow-amber-500/30">
                     <CheckCircle2 className="w-6 h-6" />
                   </div>
-                  <h3 className="text-xl font-black text-white uppercase tracking-tight">
-                    TRANSMISSION RECEIVED!
-                  </h3>
-                  <p className="text-sm text-neutral-300 font-mono max-w-sm mx-auto">
-                    Your message has cleared the pit lane. Rogelio will respond at maximum speed.
+                  <h4 className="text-lg font-bold text-white mb-1">
+                    Message Sent Successfully!
+                  </h4>
+                  <p className="text-xs text-neutral-300 max-w-sm">
+                    Thank you for reaching out. I have received your message and will respond promptly.
                   </p>
                 </motion.div>
               ) : (
                 <form onSubmit={handleSubmit} className="space-y-5">
+                  {/* Name Input */}
                   <div>
-                    <label className="block text-xs font-mono font-black uppercase tracking-wider text-neutral-400 mb-2">
-                      YOUR CALLSIGN / NAME *
+                    <label className="block text-xs font-mono font-bold tracking-wider text-neutral-300 uppercase mb-2">
+                      NAME
                     </label>
                     <input
                       type="text"
                       required
+                      placeholder="John Doe"
                       value={formData.name}
                       onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                      placeholder="e.g. Alex Rivera"
-                      className="w-full px-4 py-3.5 rounded-xl bg-black/70 border border-white/10 focus:border-[#E10600] text-white text-sm focus:outline-none focus:ring-1 focus:ring-[#E10600] transition-colors font-mono"
+                      className="w-full px-4 py-3.5 rounded-2xl bg-[#090A12] border border-white/10 focus:border-amber-400 focus:outline-none focus:ring-2 focus:ring-amber-400/20 text-white text-sm transition-all"
                     />
                   </div>
 
+                  {/* Email Input */}
                   <div>
-                    <label className="block text-xs font-mono font-black uppercase tracking-wider text-neutral-400 mb-2">
-                      COMMUNICATION FREQUENCY / EMAIL *
+                    <label className="block text-xs font-mono font-bold tracking-wider text-neutral-300 uppercase mb-2">
+                      EMAIL
                     </label>
                     <input
                       type="email"
                       required
+                      placeholder="johndoe@example.com"
                       value={formData.email}
                       onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                      placeholder="e.g. alex@company.com"
-                      className="w-full px-4 py-3.5 rounded-xl bg-black/70 border border-white/10 focus:border-[#FF6A00] text-white text-sm focus:outline-none focus:ring-1 focus:ring-[#FF6A00] transition-colors font-mono"
+                      className="w-full px-4 py-3.5 rounded-2xl bg-[#090A12] border border-white/10 focus:border-amber-400 focus:outline-none focus:ring-2 focus:ring-amber-400/20 text-white text-sm transition-all"
                     />
                   </div>
 
+                  {/* Message Input */}
                   <div>
-                    <label className="block text-xs font-mono font-black uppercase tracking-wider text-neutral-400 mb-2">
-                      PROJECT BRIEF / TELEMETRY MESSAGE *
+                    <label className="block text-xs font-mono font-bold tracking-wider text-neutral-300 uppercase mb-2">
+                      MESSAGE
                     </label>
                     <textarea
+                      rows={5}
                       required
-                      rows={4}
+                      placeholder="Your message here..."
                       value={formData.message}
                       onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                      placeholder="Describe the opportunity, project requirements, or track goals..."
-                      className="w-full px-4 py-3.5 rounded-xl bg-black/70 border border-white/10 focus:border-[#FFD400] text-white text-sm focus:outline-none focus:ring-1 focus:ring-[#FFD400] transition-colors font-mono resize-none"
+                      className="w-full px-4 py-3.5 rounded-2xl bg-[#090A12] border border-white/10 focus:border-amber-400 focus:outline-none focus:ring-2 focus:ring-amber-400/20 text-white text-sm transition-all resize-none"
                     />
                   </div>
 
-                  <button
-                    type="submit"
-                    disabled={loading}
-                    className="w-full py-4 rounded-2xl bg-gradient-to-r from-[#E10600] via-[#FF1A00] to-[#FF6A00] hover:from-[#FF1A00] hover:to-[#FFD400] text-white font-black text-sm uppercase tracking-wider shadow-[0_0_25px_rgba(225,6,0,0.5)] hover:shadow-[0_0_35px_rgba(255,106,0,0.7)] transition-all cursor-pointer speed-sweep disabled:opacity-50 flex items-center justify-center gap-2.5"
-                  >
-                    {loading ? (
-                      <span>TRANSMITTING...</span>
-                    ) : (
-                      <>
-                        <Send className="w-4 h-4" />
-                        <span>TRANSMIT TO ROGELIO // LAUNCH</span>
-                      </>
-                    )}
-                  </button>
+                  {/* Submit Button with Yellow Lightning Animation on Hover */}
+                  <div className="pt-2">
+                    <button
+                      type="submit"
+                      disabled={loading}
+                      className="group relative w-full inline-flex items-center justify-center gap-2 py-4 px-6 rounded-full bg-gradient-to-r from-amber-500 via-amber-400 to-yellow-500 hover:from-amber-400 hover:to-yellow-400 text-neutral-950 font-bold text-sm tracking-wider uppercase transition-all duration-300 shadow-xl shadow-amber-500/25 hover:shadow-amber-500/40 overflow-hidden cursor-pointer"
+                    >
+                      {/* Katana Light Sweep */}
+                      <span className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-700 bg-gradient-to-r from-transparent via-white/40 to-transparent pointer-events-none" />
+
+                      <Zap className="w-4 h-4 fill-neutral-950 text-neutral-950 group-hover:scale-125 transition-transform" />
+                      <span>{loading ? 'Transmitting...' : 'Send Message'}</span>
+                    </button>
+                  </div>
                 </form>
               )}
 
@@ -282,7 +263,6 @@ export default function Contact() {
           </div>
 
         </div>
-
       </div>
     </section>
   );
