@@ -7,7 +7,6 @@ import {
   ChevronRight,
   ChevronDown,
   ExternalLink,
-  X,
 } from 'lucide-react';
 import { portfolioData } from '../data/portfolioData';
 
@@ -120,13 +119,6 @@ export default function ProjectDetailView({ project, onClose, onPrev, onNext }) 
                 title="Next Project (Right Arrow)"
               >
                 <ChevronRight className="w-4 h-4" />
-              </button>
-              <button
-                onClick={onClose}
-                className="p-1.5 rounded-lg bg-[#161C2A] hover:bg-red-500/20 hover:text-red-400 border border-[#1E2536] text-neutral-400 transition-colors cursor-pointer ml-1"
-                title="Close View (Esc)"
-              >
-                <X className="w-4 h-4" />
               </button>
             </div>
           </div>
