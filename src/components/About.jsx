@@ -1,150 +1,99 @@
 import React from 'react';
-import { motion } from 'framer-motion';
 import { portfolioData } from '../data/portfolioData';
-import {
-  GraduationCap,
-  Code2,
-  MapPin,
-  Target,
-  Sparkles,
-  Zap,
-  User,
-} from 'lucide-react';
+import { GraduationCap, MapPin, Code2, Briefcase, UserCheck } from 'lucide-react';
 
 export default function About() {
   const { personal, aboutCards } = portfolioData;
 
-  return (
-    <section id="about" className="pt-24 pb-28 sm:pt-32 sm:pb-36 lg:pt-36 lg:pb-40 px-4 sm:px-6 lg:px-8 relative z-10">
-      {/* Background Ambient Glow */}
-      <div className="absolute top-1/2 left-0 w-80 h-80 bg-amber-500/10 rounded-full blur-[140px] pointer-events-none -z-10" />
+  const keyFacts = [
+    {
+      icon: <GraduationCap className="w-4 h-4 text-amber-400" />,
+      label: "Education",
+      primary: "BS in Information Technology",
+      secondary: "National College of Science and Technology",
+    },
+    {
+      icon: <MapPin className="w-4 h-4 text-amber-400" />,
+      label: "Location",
+      primary: "Dasmariñas, Cavite",
+      secondary: "Philippines (4114)",
+    },
+    {
+      icon: <Code2 className="w-4 h-4 text-amber-400" />,
+      label: "Core Focus",
+      primary: "Web & Software Development",
+      secondary: "React, PHP, Node.js & MySQL",
+    },
+    {
+      icon: <Briefcase className="w-4 h-4 text-amber-400" />,
+      label: "Goal",
+      primary: "Full-Stack Developer",
+      secondary: "Seeking internship & junior roles",
+    },
+  ];
 
+  return (
+    <section id="about" className="py-20 sm:py-24 px-4 sm:px-6 lg:px-8 border-b border-[#1E2536]/60">
       <div className="max-w-6xl w-full mx-auto">
+        
         {/* Section Header */}
-        <div className="mb-14 text-center sm:text-left">
-          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-neutral-300 text-xs font-mono tracking-widest uppercase mb-3">
-            <span>ABOUT ME</span>
+        <div className="mb-12">
+          <div className="text-xs font-mono font-semibold tracking-wider text-amber-400 uppercase mb-2">
+            01 / Background
           </div>
-          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold tracking-tight text-white">
+          <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-white">
             About Me
           </h2>
-          <div className="w-16 h-1 bg-gradient-to-r from-amber-500 to-yellow-400 rounded-full mt-3 sm:mx-0 mx-auto" />
         </div>
 
-        {/* Two-Column Layout */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
+        {/* Two-Column Grid: Narrative on Left, Fact Tiles on Right */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
           
-          {/* Left Column: Portrait Frame */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="lg:col-span-5 flex flex-col items-center"
-          >
-            <div className="relative w-full max-w-sm rounded-3xl p-3 bg-[#111320]/90 backdrop-blur-xl border border-amber-400/40 shadow-xl shadow-amber-500/10 group">
-              {/* Image Frame */}
-              <div className="w-full aspect-[4/5] rounded-2xl bg-[#090A12] border border-amber-400/30 relative overflow-hidden group">
-                <img
-                  src={personal.profileImage}
-                  alt={personal.name}
-                  className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500"
-                />
-              </div>
+          {/* Left Column: Narrative (7 cols) */}
+          <div className="lg:col-span-7 space-y-4 text-neutral-300 text-sm sm:text-base leading-relaxed">
+            <p>
+              I am an Information Technology student at the <strong className="text-white font-medium">National College of Science and Technology (NCST)</strong> in Cavite, Philippines. My primary interest is in full-stack web development, software engineering fundamentals, and building reliable digital systems.
+            </p>
+            <p>
+              Throughout my academic projects, I have developed functional web applications such as the <span className="text-neutral-100 font-medium">Go-On National College Online Enrollment Portal</span> and the <span className="text-neutral-100 font-medium">NCST Campus Lost & Found Web Portal</span>. I enjoy working directly with relational database schemas, form validation pipelines, and clean front-end component systems.
+            </p>
+            <p>
+              My goal is to continue refining my engineering skills, learn from experienced developer teams, and contribute to production software that delivers genuine utility to users and institutions.
+            </p>
+
+            {/* Simple philosophy quote box */}
+            <div className="p-4 rounded-lg bg-[#111622] border-l-2 border-amber-400 text-xs sm:text-sm text-neutral-300 font-mono mt-6">
+              "Focus on learning every day, improving programming fundamentals, and building practical software that solves real problems."
             </div>
-          </motion.div>
+          </div>
 
-          {/* Right Column: Narrative, Academic Credentials, Goals & Modular Cards */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="lg:col-span-7 flex flex-col space-y-6"
-          >
-            {/* Biography Card */}
-            <div className="p-6 sm:p-8 rounded-3xl bg-[#111320]/85 backdrop-blur-xl border border-white/10 shadow-lg relative overflow-hidden">
-              <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-amber-400 mb-3">
-                <Sparkles className="w-4 h-4" />
-                <span>Biography</span>
-              </div>
-              <p className="text-neutral-200 text-base leading-relaxed mb-4">
-                {personal.bio}
-              </p>
-              <p className="text-neutral-400 text-sm leading-relaxed">
-                Currently pursuing <span className="font-semibold text-white">{personal.course}</span> at <span className="font-semibold text-amber-400">{personal.school}</span> located in <span className="font-semibold text-white">{personal.location}</span>.
-              </p>
-            </div>
-
-            {/* Modular Info Cards (Education, Focus, Location) */}
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-              {/* Education Card */}
-              <div className="p-5 rounded-2xl bg-[#111320]/85 backdrop-blur-xl border border-white/10 hover:border-amber-400/50 transition-colors shadow-sm group">
-                <div className="w-8 h-8 rounded-lg bg-amber-400/15 flex items-center justify-center text-amber-400 mb-3 group-hover:scale-110 transition-transform">
-                  <GraduationCap className="w-4 h-4" />
+          {/* Right Column: 4 Fact Tiles (5 cols) */}
+          <div className="lg:col-span-5 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-3.5">
+            {keyFacts.map((fact) => (
+              <div
+                key={fact.label}
+                className="p-4 rounded-xl bg-[#111622] border border-[#1E2536] hover:border-[#2D374D] transition-colors flex items-start gap-3.5"
+              >
+                <div className="p-2 rounded-lg bg-[#161C2A] border border-[#1E2536] shrink-0 mt-0.5">
+                  {fact.icon}
                 </div>
-                <div className="text-xs text-neutral-400 font-medium">
-                  {aboutCards.education.title}
-                </div>
-                <div className="text-sm font-bold text-white mt-1">
-                  {aboutCards.education.value}
-                </div>
-                <div className="text-[11px] text-amber-400/80 mt-0.5">
-                  {aboutCards.education.subtitle}
+                <div className="min-w-0">
+                  <div className="text-[11px] font-mono uppercase tracking-wider text-neutral-400">
+                    {fact.label}
+                  </div>
+                  <div className="text-sm font-semibold text-white mt-0.5 truncate">
+                    {fact.primary}
+                  </div>
+                  <div className="text-xs text-neutral-400 mt-0.5">
+                    {fact.secondary}
+                  </div>
                 </div>
               </div>
-
-              {/* Focus Card */}
-              <div className="p-5 rounded-2xl bg-[#111320]/85 backdrop-blur-xl border border-white/10 hover:border-amber-400/50 transition-colors shadow-sm group">
-                <div className="w-8 h-8 rounded-lg bg-amber-400/15 flex items-center justify-center text-amber-400 mb-3 group-hover:scale-110 transition-transform">
-                  <Code2 className="w-4 h-4" />
-                </div>
-                <div className="text-xs text-neutral-400 font-medium">
-                  {aboutCards.focus.title}
-                </div>
-                <div className="text-sm font-bold text-white mt-1">
-                  {aboutCards.focus.value}
-                </div>
-                <div className="text-[11px] text-neutral-400 mt-0.5">
-                  {aboutCards.focus.subtitle}
-                </div>
-              </div>
-
-              {/* Location Card */}
-              <div className="p-5 rounded-2xl bg-[#111320]/85 backdrop-blur-xl border border-white/10 hover:border-amber-400/50 transition-colors shadow-sm group">
-                <div className="w-8 h-8 rounded-lg bg-amber-400/15 flex items-center justify-center text-amber-400 mb-3 group-hover:scale-110 transition-transform">
-                  <MapPin className="w-4 h-4" />
-                </div>
-                <div className="text-xs text-neutral-400 font-medium">
-                  {aboutCards.location.title}
-                </div>
-                <div className="text-sm font-bold text-white mt-1">
-                  {aboutCards.location.value}
-                </div>
-                <div className="text-[11px] text-neutral-400 mt-0.5">
-                  {aboutCards.location.subtitle}
-                </div>
-              </div>
-            </div>
-
-            {/* Career Goals & Interests Card */}
-            <div className="p-6 sm:p-7 rounded-3xl bg-gradient-to-r from-amber-400/10 via-[#111320]/90 to-[#111320]/90 backdrop-blur-xl border border-amber-400/30 shadow-md flex flex-col sm:flex-row gap-5 items-start sm:items-center">
-              <div className="w-12 h-12 rounded-2xl bg-amber-500 text-neutral-950 flex items-center justify-center shrink-0 shadow-lg shadow-amber-500/30">
-                <Target className="w-6 h-6" />
-              </div>
-              <div>
-                <div className="text-xs font-bold uppercase tracking-wider text-amber-400 mb-1 font-mono">
-                  Career Aspirations
-                </div>
-                <div className="text-sm font-semibold text-neutral-200 leading-snug">
-                  {personal.careerGoal}
-                </div>
-              </div>
-            </div>
-
-          </motion.div>
+            ))}
+          </div>
 
         </div>
+
       </div>
     </section>
   );

@@ -2,13 +2,12 @@
 
 @layer base {
   :root {
-    --color-bg-base: #08090D;
-    --color-bg-surface: #10111A;
-    --color-border: #232533;
+    --color-bg-base: #0B0E14;
+    --color-bg-surface: #111622;
+    --color-border: #1E2536;
     --color-text-main: #F8FAFC;
     --color-text-muted: #94A3B8;
-    --color-gold: #FBBF24;
-    --color-gold-glow: rgba(251, 191, 36, 0.35);
+    --color-accent: #F59E0B;
   }
 
   /* Accessible Light Mode option */
@@ -18,114 +17,54 @@
     --color-border: #E5E7EB;
     --color-text-main: #0F172A;
     --color-text-muted: #64748B;
-    --color-gold: #F59E0B;
-    --color-gold-glow: rgba(245, 158, 11, 0.25);
+    --color-accent: #D97706;
   }
 
   body {
     background-color: var(--color-bg-base);
     color: var(--color-text-main);
     font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
+  }
+
+  ::selection {
+    background-color: #F59E0B;
+    color: #0B0E14;
   }
 }
 
-/* Custom golden scrollbar */
+/* Subtle, standard scrollbar */
 ::-webkit-scrollbar {
-  width: 7px;
+  width: 6px;
 }
 ::-webkit-scrollbar-track {
-  background: rgba(8, 9, 13, 0.8);
+  background: #0B0E14;
 }
 ::-webkit-scrollbar-thumb {
-  background: rgba(245, 158, 11, 0.4);
+  background: #262D3D;
   border-radius: 9999px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(245, 158, 11, 0.7);
+  background: #3B455B;
 }
 
-/* Glassmorphic Panels */
-.glass-panel-dark {
-  background: rgba(16, 17, 26, 0.72);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+/* Subtle micro-dot developer grid pattern */
+.dev-dot-pattern {
+  background-image: radial-gradient(#1E2536 1px, transparent 1px);
+  background-size: 28px 28px;
 }
 
-.glass-panel-dark:hover {
-  border-color: rgba(245, 158, 11, 0.4);
+/* Clean, human card surface */
+.dev-card {
+  background-color: #111622;
+  border: 1px solid #1E2536;
+  border-radius: 0.75rem;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
-/* Neon Golden Glow Utilities */
-.neon-gold-border {
-  border-color: rgba(245, 158, 11, 0.6);
-  box-shadow: 0 0 20px rgba(245, 158, 11, 0.25), inset 0 0 15px rgba(245, 158, 11, 0.12);
-}
-
-.neon-gold-glow-lg {
-  box-shadow: 0 0 35px rgba(245, 158, 11, 0.35);
-}
-
-.neon-gold-glow-sm {
-  box-shadow: 0 0 14px rgba(245, 158, 11, 0.25);
-}
-
-.gold-gradient-text {
-  background: linear-gradient(135deg, #FFFBEB 0%, #FEF08A 30%, #F59E0B 70%, #D97706 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-/* Japanese Urokomon (Triangle) Subtle Motif */
-.urokomon-pattern {
-  background-image: radial-gradient(rgba(245, 158, 11, 0.06) 1px, transparent 0);
-  background-size: 24px 24px;
-}
-
-/* Katana Slash Diagonal Decorative Line */
-.katana-line {
-  position: relative;
-  overflow: hidden;
-}
-.katana-line::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(245, 158, 11, 0.8), transparent);
-  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-}
-.katana-line:hover::after {
-  transform: translateX(200%);
-}
-
-/* Smooth Marquee ticker animation */
-@keyframes marquee {
-  0% { transform: translateX(0%); }
-  100% { transform: translateX(-50%); }
-}
-
-.animate-marquee {
-  display: flex;
-  width: 200%;
-  animation: marquee 28s linear infinite;
-}
-.animate-marquee:hover {
-  animation-play-state: paused;
-}
-
-/* Subtle satellite badge float */
-@keyframes satellite-float {
-  0%, 100% { transform: translateY(0px); }
-  50% { transform: translateY(-4px); }
-}
-
-.animate-satellite {
-  animation: satellite-float 3.5s ease-in-out infinite;
-}
-
-.animate-satellite-delay {
-  animation: satellite-float 3.5s ease-in-out infinite 1.75s;
+.dev-card:hover {
+  border-color: #2D374D;
+  box-shadow: 0 4px 20px -4px rgba(0, 0, 0, 0.4);
 }

@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { motion } from 'framer-motion';
 import { portfolioData } from '../data/portfolioData';
 import {
   GithubIcon,
@@ -11,8 +10,10 @@ import {
   Mail,
   Phone,
   MapPin,
-  Zap,
+  Send,
   CheckCircle2,
+  Copy,
+  Check,
 } from 'lucide-react';
 
 export default function Contact() {
@@ -21,10 +22,18 @@ export default function Contact() {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
+    subject: '',
     message: '',
   });
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [copiedKey, setCopiedKey] = useState(null);
+
+  const handleCopy = (text, key) => {
+    navigator.clipboard.writeText(text);
+    setCopiedKey(key);
+    setTimeout(() => setCopiedKey(null), 2000);
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -34,132 +43,177 @@ export default function Contact() {
     setTimeout(() => {
       setLoading(false);
       setSubmitted(true);
-      setFormData({ name: '', email: '', message: '' });
+      setFormData({ name: '', email: '', subject: '', message: '' });
       setTimeout(() => setSubmitted(false), 5000);
     }, 700);
   };
 
   return (
-    <section id="contact" className="py-24 px-4 sm:px-6 lg:px-8 relative z-10">
-      {/* Background Glow */}
-      <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-amber-500/10 rounded-full blur-[140px] pointer-events-none -z-10" />
-
+    <section id="contact" className="py-20 px-4 sm:px-6 lg:px-8 border-t border-[#1E2536]">
       <div className="max-w-6xl w-full mx-auto">
         {/* Section Header */}
-        <div className="mb-16 text-center sm:text-left">
-          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-amber-400/15 border border-amber-400/30 text-amber-400 text-xs font-semibold tracking-widest uppercase mb-3">
-            <Zap className="w-3 h-3 fill-amber-400 text-amber-400" />
-            <span>LET'S CONNECT</span>
+        <div className="mb-12">
+          <div className="flex items-center gap-2 mb-2 font-mono text-xs uppercase tracking-wider text-amber-400">
+            <span className="text-neutral-500">04 /</span>
+            <span>GET IN TOUCH</span>
           </div>
-          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold tracking-tight text-white">
-            Have a project in mind?
+          <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-white">
+            Contact Me
           </h2>
           <p className="text-neutral-400 mt-2 text-sm sm:text-base max-w-xl">
-            Let's discuss development opportunities, internships, or building something impactful together.
+            I'm actively looking for junior developer roles, internships, and freelance projects.
+            Whether you have an inquiry, a project proposal, or just want to connect, feel free to drop a message.
           </p>
-          <div className="w-16 h-1 bg-gradient-to-r from-amber-500 to-yellow-400 rounded-full mt-4 sm:mx-0 mx-auto" />
         </div>
 
         {/* Two-Column Grid: Contact Information & Direct Form */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
           
-          {/* Left Column: Contact Cards & Social Channels (5 cols) */}
-          <div className="lg:col-span-5 space-y-6">
+          {/* Left Column: Direct Channels & Profiles (5 cols) */}
+          <div className="lg:col-span-5 space-y-4">
             
-            {/* Direct Channel Cards */}
-            <div className="p-6 rounded-3xl bg-[#10121D]/85 backdrop-blur-xl border border-white/10 shadow-lg space-y-4">
-              
+            {/* Status card */}
+            <div className="p-4 rounded-xl bg-[#111622] border border-[#1E2536]">
+              <div className="flex items-center gap-2.5 mb-1.5">
+                <span className="relative flex h-2.5 w-2.5">
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                  <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500"></span>
+                </span>
+                <span className="text-xs font-semibold text-emerald-400">
+                  Open to Opportunities
+                </span>
+              </div>
+              <p className="text-xs text-neutral-400">
+                Available for student internships, junior web developer positions, and contract projects.
+              </p>
+            </div>
+
+            {/* Direct Channel Tiles */}
+            <div className="p-5 rounded-xl bg-[#111622] border border-[#1E2536] space-y-3">
+              <div className="text-[11px] font-mono uppercase text-neutral-400">
+                Direct Contact
+              </div>
+
               {/* Email */}
-              <a
-                href={`mailto:${personal.email}`}
-                className="flex items-center gap-4 p-3.5 rounded-2xl bg-[#090A12] border border-white/10 hover:border-amber-400/60 transition-colors group"
-              >
-                <div className="w-10 h-10 rounded-xl bg-amber-400/15 flex items-center justify-center text-amber-400 group-hover:scale-110 transition-transform">
-                  <Mail className="w-5 h-5" />
-                </div>
-                <div>
-                  <div className="text-xs text-neutral-400 font-medium">Direct Email</div>
-                  <div className="text-sm font-bold text-white">
-                    {personal.email}
+              <div className="flex items-center justify-between gap-3 p-3 rounded-lg bg-[#0B0E14] border border-[#1E2536]">
+                <div className="flex items-center gap-3 min-w-0">
+                  <div className="w-8 h-8 rounded-md bg-[#161C2B] text-amber-400 flex items-center justify-center shrink-0">
+                    <Mail className="w-4 h-4" />
+                  </div>
+                  <div className="min-w-0">
+                    <div className="text-[10px] font-mono text-neutral-500 uppercase">Email</div>
+                    <a
+                      href={`mailto:${personal.email}`}
+                      className="text-xs sm:text-sm font-medium text-white hover:text-amber-400 transition-colors truncate block"
+                    >
+                      {personal.email}
+                    </a>
                   </div>
                 </div>
-              </a>
+                <button
+                  type="button"
+                  onClick={() => handleCopy(personal.email, 'email')}
+                  className="p-1.5 rounded text-neutral-400 hover:text-white hover:bg-[#1E2536] transition-colors shrink-0"
+                  title="Copy email address"
+                  aria-label="Copy email address"
+                >
+                  {copiedKey === 'email' ? (
+                    <Check className="w-3.5 h-3.5 text-emerald-400" />
+                  ) : (
+                    <Copy className="w-3.5 h-3.5" />
+                  )}
+                </button>
+              </div>
 
               {/* Phone */}
-              <a
-                href={`tel:${personal.phone.replace(/\s+/g, '')}`}
-                className="flex items-center gap-4 p-3.5 rounded-2xl bg-[#090A12] border border-white/10 hover:border-amber-400/60 transition-colors group"
-              >
-                <div className="w-10 h-10 rounded-xl bg-amber-400/15 flex items-center justify-center text-amber-400 group-hover:scale-110 transition-transform">
-                  <Phone className="w-5 h-5" />
-                </div>
-                <div>
-                  <div className="text-xs text-neutral-400 font-medium">Phone / WhatsApp</div>
-                  <div className="text-sm font-bold text-white">
-                    {personal.phone}
+              <div className="flex items-center justify-between gap-3 p-3 rounded-lg bg-[#0B0E14] border border-[#1E2536]">
+                <div className="flex items-center gap-3 min-w-0">
+                  <div className="w-8 h-8 rounded-md bg-[#161C2B] text-amber-400 flex items-center justify-center shrink-0">
+                    <Phone className="w-4 h-4" />
+                  </div>
+                  <div className="min-w-0">
+                    <div className="text-[10px] font-mono text-neutral-500 uppercase">Phone & WhatsApp</div>
+                    <a
+                      href={`tel:${personal.phone.replace(/\s+/g, '')}`}
+                      className="text-xs sm:text-sm font-medium text-white hover:text-amber-400 transition-colors truncate block"
+                    >
+                      {personal.phone}
+                    </a>
                   </div>
                 </div>
-              </a>
+                <button
+                  type="button"
+                  onClick={() => handleCopy(personal.phone, 'phone')}
+                  className="p-1.5 rounded text-neutral-400 hover:text-white hover:bg-[#1E2536] transition-colors shrink-0"
+                  title="Copy phone number"
+                  aria-label="Copy phone number"
+                >
+                  {copiedKey === 'phone' ? (
+                    <Check className="w-3.5 h-3.5 text-emerald-400" />
+                  ) : (
+                    <Copy className="w-3.5 h-3.5" />
+                  )}
+                </button>
+              </div>
 
               {/* Location */}
-              <div className="flex items-center gap-4 p-3.5 rounded-2xl bg-[#090A12] border border-white/10">
-                <div className="w-10 h-10 rounded-xl bg-amber-400/15 flex items-center justify-center text-amber-400">
-                  <MapPin className="w-5 h-5" />
+              <div className="flex items-center gap-3 p-3 rounded-lg bg-[#0B0E14] border border-[#1E2536]">
+                <div className="w-8 h-8 rounded-md bg-[#161C2B] text-amber-400 flex items-center justify-center shrink-0">
+                  <MapPin className="w-4 h-4" />
                 </div>
-                <div>
-                  <div className="text-xs text-neutral-400 font-medium">Current Location</div>
-                  <div className="text-sm font-bold text-white">
+                <div className="min-w-0">
+                  <div className="text-[10px] font-mono text-neutral-500 uppercase">Location</div>
+                  <div className="text-xs sm:text-sm font-medium text-white truncate">
                     {personal.location}
                   </div>
                 </div>
               </div>
-
             </div>
 
-            {/* Social Channels Strip */}
-            <div className="p-6 rounded-3xl bg-[#10121D]/85 backdrop-blur-xl border border-white/10 shadow-lg">
-              <div className="text-xs font-mono font-bold tracking-wider uppercase text-neutral-400 mb-4">
-                Connect on Social Networks
+            {/* Social Channels */}
+            <div className="p-5 rounded-xl bg-[#111622] border border-[#1E2536]">
+              <div className="text-[11px] font-mono uppercase text-neutral-400 mb-3">
+                Profiles & Networks
               </div>
-              <div className="grid grid-cols-2 gap-3">
+              <div className="grid grid-cols-2 gap-2.5">
                 <a
                   href={socialLinks.github.url}
                   target="_blank"
                   rel="noreferrer"
-                  className="flex items-center gap-2.5 p-3 rounded-2xl bg-[#090A12] hover:bg-amber-400/15 border border-white/10 text-neutral-300 hover:text-amber-400 hover:border-amber-400/40 transition-colors"
+                  className="flex items-center gap-2 p-2.5 rounded-lg bg-[#0B0E14] border border-[#1E2536] text-neutral-300 hover:text-white hover:border-neutral-500 transition-colors text-xs font-medium"
                 >
-                  <GithubIcon className="w-4 h-4" />
-                  <span className="text-xs font-semibold">{socialLinks.github.placeholder}</span>
+                  <GithubIcon className="w-4 h-4 text-neutral-400 shrink-0" />
+                  <span className="truncate">{socialLinks.github.placeholder}</span>
                 </a>
 
                 <a
                   href={socialLinks.linkedin.url}
                   target="_blank"
                   rel="noreferrer"
-                  className="flex items-center gap-2.5 p-3 rounded-2xl bg-[#090A12] hover:bg-amber-400/15 border border-white/10 text-neutral-300 hover:text-amber-400 hover:border-amber-400/40 transition-colors"
+                  className="flex items-center gap-2 p-2.5 rounded-lg bg-[#0B0E14] border border-[#1E2536] text-neutral-300 hover:text-white hover:border-neutral-500 transition-colors text-xs font-medium"
                 >
-                  <LinkedinIcon className="w-4 h-4" />
-                  <span className="text-xs font-semibold">{socialLinks.linkedin.placeholder}</span>
+                  <LinkedinIcon className="w-4 h-4 text-neutral-400 shrink-0" />
+                  <span className="truncate">{socialLinks.linkedin.placeholder}</span>
                 </a>
 
                 <a
                   href={socialLinks.facebook.url}
                   target="_blank"
                   rel="noreferrer"
-                  className="flex items-center gap-2.5 p-3 rounded-2xl bg-[#090A12] hover:bg-amber-400/15 border border-white/10 text-neutral-300 hover:text-amber-400 hover:border-amber-400/40 transition-colors"
+                  className="flex items-center gap-2 p-2.5 rounded-lg bg-[#0B0E14] border border-[#1E2536] text-neutral-300 hover:text-white hover:border-neutral-500 transition-colors text-xs font-medium"
                 >
-                  <FacebookIcon className="w-4 h-4" />
-                  <span className="text-xs font-semibold">{socialLinks.facebook.placeholder}</span>
+                  <FacebookIcon className="w-4 h-4 text-neutral-400 shrink-0" />
+                  <span className="truncate">{socialLinks.facebook.placeholder}</span>
                 </a>
 
                 <a
                   href={socialLinks.instagram.url}
                   target="_blank"
                   rel="noreferrer"
-                  className="flex items-center gap-2.5 p-3 rounded-2xl bg-[#090A12] hover:bg-amber-400/15 border border-white/10 text-neutral-300 hover:text-amber-400 hover:border-amber-400/40 transition-colors"
+                  className="flex items-center gap-2 p-2.5 rounded-lg bg-[#0B0E14] border border-[#1E2536] text-neutral-300 hover:text-white hover:border-neutral-500 transition-colors text-xs font-medium"
                 >
-                  <InstagramIcon className="w-4 h-4" />
-                  <span className="text-xs font-semibold">{socialLinks.instagram.placeholder}</span>
+                  <InstagramIcon className="w-4 h-4 text-neutral-400 shrink-0" />
+                  <span className="truncate">{socialLinks.instagram.placeholder}</span>
                 </a>
               </div>
             </div>
@@ -168,92 +222,111 @@ export default function Contact() {
 
           {/* Right Column: Contact Form (7 cols) */}
           <div className="lg:col-span-7">
-            <div className="p-8 sm:p-10 rounded-3xl bg-[#10121D]/90 backdrop-blur-xl border border-white/10 shadow-xl relative overflow-hidden">
+            <div className="p-6 sm:p-7 rounded-xl bg-[#111622] border border-[#1E2536]">
               
-              <div className="mb-6">
-                <h3 className="text-xl font-bold text-white">
-                  Send a Message Directly
+              <div className="mb-5 pb-4 border-b border-[#1E2536]">
+                <h3 className="text-base font-bold text-white">
+                  Send a Direct Message
                 </h3>
                 <p className="text-xs text-neutral-400 mt-1">
-                  Fill in your details below and I'll get back to you soon.
+                  Fill in your details below and I'll get back to you directly.
                 </p>
               </div>
 
               {submitted ? (
-                <motion.div
-                  initial={{ opacity: 0, scale: 0.95 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  className="p-8 rounded-2xl bg-amber-400/15 border border-amber-400/40 text-center flex flex-col items-center"
-                >
-                  <div className="w-12 h-12 rounded-full bg-amber-500 text-neutral-950 flex items-center justify-center mb-3 shadow-lg shadow-amber-500/30">
-                    <CheckCircle2 className="w-6 h-6" />
+                <div className="p-6 rounded-lg bg-emerald-950/40 border border-emerald-500/30 text-emerald-200">
+                  <div className="flex items-center gap-2.5 font-semibold text-white mb-2">
+                    <CheckCircle2 className="w-5 h-5 text-emerald-400 shrink-0" />
+                    <span>Message received!</span>
                   </div>
-                  <h4 className="text-lg font-bold text-white mb-1">
-                    Message Sent Successfully!
-                  </h4>
-                  <p className="text-xs text-neutral-300 max-w-sm">
-                    Thank you for reaching out. I have received your message and will respond promptly.
+                  <p className="text-xs text-emerald-300/90 leading-relaxed">
+                    Thank you for reaching out. Your message has been sent successfully, and I will get back to you as soon as possible.
                   </p>
-                </motion.div>
+                </div>
               ) : (
-                <form onSubmit={handleSubmit} className="space-y-5">
-                  {/* Name Input */}
+                <form onSubmit={handleSubmit} className="space-y-4">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    {/* Name Input */}
+                    <div>
+                      <label className="block text-xs font-mono text-neutral-300 uppercase mb-1.5">
+                        Name <span className="text-amber-400">*</span>
+                      </label>
+                      <input
+                        type="text"
+                        required
+                        placeholder="John Doe"
+                        value={formData.name}
+                        onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                        className="w-full px-3.5 py-2.5 rounded-lg bg-[#0B0E14] border border-[#1E2536] focus:border-amber-400 focus:outline-none focus:ring-1 focus:ring-amber-400/30 text-white text-sm placeholder:text-neutral-600 transition-colors"
+                      />
+                    </div>
+
+                    {/* Email Input */}
+                    <div>
+                      <label className="block text-xs font-mono text-neutral-300 uppercase mb-1.5">
+                        Email <span className="text-amber-400">*</span>
+                      </label>
+                      <input
+                        type="email"
+                        required
+                        placeholder="john@example.com"
+                        value={formData.email}
+                        onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                        className="w-full px-3.5 py-2.5 rounded-lg bg-[#0B0E14] border border-[#1E2536] focus:border-amber-400 focus:outline-none focus:ring-1 focus:ring-amber-400/30 text-white text-sm placeholder:text-neutral-600 transition-colors"
+                      />
+                    </div>
+                  </div>
+
+                  {/* Subject Input */}
                   <div>
-                    <label className="block text-xs font-mono font-bold tracking-wider text-neutral-300 uppercase mb-2">
-                      NAME
+                    <label className="block text-xs font-mono text-neutral-300 uppercase mb-1.5">
+                      Subject
                     </label>
                     <input
                       type="text"
-                      required
-                      placeholder="John Doe"
-                      value={formData.name}
-                      onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                      className="w-full px-4 py-3.5 rounded-2xl bg-[#090A12] border border-white/10 focus:border-amber-400 focus:outline-none focus:ring-2 focus:ring-amber-400/20 text-white text-sm transition-all"
-                    />
-                  </div>
-
-                  {/* Email Input */}
-                  <div>
-                    <label className="block text-xs font-mono font-bold tracking-wider text-neutral-300 uppercase mb-2">
-                      EMAIL
-                    </label>
-                    <input
-                      type="email"
-                      required
-                      placeholder="johndoe@example.com"
-                      value={formData.email}
-                      onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                      className="w-full px-4 py-3.5 rounded-2xl bg-[#090A12] border border-white/10 focus:border-amber-400 focus:outline-none focus:ring-2 focus:ring-amber-400/20 text-white text-sm transition-all"
+                      placeholder="e.g. Internship Inquiry / Web Development Project"
+                      value={formData.subject}
+                      onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
+                      className="w-full px-3.5 py-2.5 rounded-lg bg-[#0B0E14] border border-[#1E2536] focus:border-amber-400 focus:outline-none focus:ring-1 focus:ring-amber-400/30 text-white text-sm placeholder:text-neutral-600 transition-colors"
                     />
                   </div>
 
                   {/* Message Input */}
                   <div>
-                    <label className="block text-xs font-mono font-bold tracking-wider text-neutral-300 uppercase mb-2">
-                      MESSAGE
+                    <label className="block text-xs font-mono text-neutral-300 uppercase mb-1.5">
+                      Message <span className="text-amber-400">*</span>
                     </label>
                     <textarea
                       rows={5}
                       required
-                      placeholder="Your message here..."
+                      placeholder="How can I help you? Tell me about the role, project, or timeline..."
                       value={formData.message}
                       onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                      className="w-full px-4 py-3.5 rounded-2xl bg-[#090A12] border border-white/10 focus:border-amber-400 focus:outline-none focus:ring-2 focus:ring-amber-400/20 text-white text-sm transition-all resize-none"
+                      className="w-full px-3.5 py-2.5 rounded-lg bg-[#0B0E14] border border-[#1E2536] focus:border-amber-400 focus:outline-none focus:ring-1 focus:ring-amber-400/30 text-white text-sm placeholder:text-neutral-600 transition-colors resize-none"
                     />
                   </div>
 
-                  {/* Submit Button with Yellow Lightning Animation on Hover */}
-                  <div className="pt-2">
+                  {/* Submit Button */}
+                  <div className="pt-2 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                    <p className="text-[11px] text-neutral-500">
+                      Response typically within 24-48 hours.
+                    </p>
                     <button
                       type="submit"
                       disabled={loading}
-                      className="group relative w-full inline-flex items-center justify-center gap-2 py-4 px-6 rounded-full bg-gradient-to-r from-amber-500 via-amber-400 to-yellow-500 hover:from-amber-400 hover:to-yellow-400 text-neutral-950 font-bold text-sm tracking-wider uppercase transition-all duration-300 shadow-xl shadow-amber-500/25 hover:shadow-amber-500/40 overflow-hidden cursor-pointer"
+                      className="inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-lg bg-amber-400 hover:bg-amber-300 text-neutral-950 font-semibold text-xs sm:text-sm tracking-wide uppercase transition-colors disabled:opacity-50 cursor-pointer shrink-0"
                     >
-                      {/* Katana Light Sweep */}
-                      <span className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-700 bg-gradient-to-r from-transparent via-white/40 to-transparent pointer-events-none" />
-
-                      <Zap className="w-4 h-4 fill-neutral-950 text-neutral-950 group-hover:scale-125 transition-transform" />
-                      <span>{loading ? 'Transmitting...' : 'Send Message'}</span>
+                      {loading ? (
+                        <>
+                          <span className="w-3.5 h-3.5 border-2 border-neutral-950 border-t-transparent rounded-full animate-spin" />
+                          <span>Sending...</span>
+                        </>
+                      ) : (
+                        <>
+                          <Send className="w-3.5 h-3.5" />
+                          <span>Send Message</span>
+                        </>
+                      )}
                     </button>
                   </div>
                 </form>

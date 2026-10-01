@@ -1,128 +1,129 @@
-import React, { useState } from 'react';
-import { motion } from 'framer-motion';
+import React from 'react';
 import { portfolioData } from '../data/portfolioData';
-import { GithubIcon, FigmaIcon } from './Icons';
 import {
   Code,
   Server,
   Database,
-  Zap,
-  Sparkles,
+  Wrench,
   Layers,
   Terminal,
   Cpu,
-  Boxes,
-  Flame,
   GitBranch,
-  Laptop,
-  Palette,
-  FileCode2,
+  Boxes,
 } from 'lucide-react';
-
-const iconMap = {
-  FileCode2: FileCode2,
-  Palette: Palette,
-  Sparkles: Sparkles,
-  Layers: Layers,
-  Server: Server,
-  Cpu: Cpu,
-  Terminal: Terminal,
-  Boxes: Boxes,
-  Database: Database,
-  Flame: Flame,
-  GitBranch: GitBranch,
-  Github: GithubIcon,
-  Laptop: Laptop,
-  Figma: FigmaIcon,
-};
+import { GithubIcon, FigmaIcon } from './Icons';
 
 export default function Skills() {
-  const { skills } = portfolioData;
-  const [hoveredSkill, setHoveredSkill] = useState(null);
+  const categories = [
+    {
+      title: "Frontend Development",
+      description: "Building responsive, accessible, and structured web interfaces.",
+      icon: <Layers className="w-4 h-4 text-amber-400" />,
+      skills: [
+        { name: "React", note: "Hooks, SPAs, State" },
+        { name: "JavaScript", note: "ES6+, DOM, Fetch" },
+        { name: "HTML5 & CSS3", note: "Semantic, Responsive" },
+        { name: "Tailwind CSS", note: "Utility-First Styling" },
+        { name: "Next.js", note: "App Router, SSR basics" },
+      ],
+    },
+    {
+      title: "Backend & Logic",
+      description: "Server architecture, relational workflows, and REST endpoints.",
+      icon: <Server className="w-4 h-4 text-amber-400" />,
+      skills: [
+        { name: "PHP", note: "OOP, Sessions, Auth" },
+        { name: "Node.js", note: "Express, Middleware" },
+        { name: "REST APIs", note: "JSON, CRUD, HTTP" },
+        { name: "Python", note: "Scripting, Logic" },
+        { name: "Java", note: "OOP Foundations" },
+      ],
+    },
+    {
+      title: "Databases & Storage",
+      description: "Designing structured relational schemas and data queries.",
+      icon: <Database className="w-4 h-4 text-amber-400" />,
+      skills: [
+        { name: "MySQL", note: "Relational Schemas, Joins" },
+        { name: "PostgreSQL", note: "Relational Queries" },
+        { name: "MongoDB", note: "Document Storage" },
+        { name: "SQL Modeling", note: "Normalization, Keys" },
+      ],
+    },
+    {
+      title: "Tools & Environment",
+      description: "Version control, development tooling, and prototyping.",
+      icon: <Wrench className="w-4 h-4 text-amber-400" />,
+      skills: [
+        { name: "Git", note: "Branching, Merges" },
+        { name: "GitHub", note: "Repositories, PRs" },
+        { name: "VS Code", note: "Primary IDE" },
+        { name: "Figma", note: "UI/UX Prototyping" },
+        { name: "Postman", note: "API Testing" },
+      ],
+    },
+  ];
 
   return (
-    <section id="skills" className="py-24 px-4 sm:px-6 lg:px-8 relative z-10">
-      {/* Background Accent */}
-      <div className="absolute bottom-10 left-1/3 w-80 h-80 bg-amber-500/10 rounded-full blur-[140px] pointer-events-none -z-10" />
-
+    <section id="skills" className="py-20 sm:py-24 px-4 sm:px-6 lg:px-8 border-b border-[#1E2536]/60">
       <div className="max-w-6xl w-full mx-auto">
+        
         {/* Section Header */}
-        <div className="mb-16 text-center sm:text-left">
-          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-amber-400/15 border border-amber-400/30 text-amber-400 text-xs font-semibold tracking-widest uppercase mb-3">
-            <Zap className="w-3 h-3 fill-amber-400 text-amber-400" />
-            <span>WHAT I USE</span>
+        <div className="mb-12">
+          <div className="text-xs font-mono font-semibold tracking-wider text-amber-400 uppercase mb-2">
+            02 / Technical Stack
           </div>
-          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold tracking-tight text-white">
+          <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-white">
             Skills & Technologies
           </h2>
-          <p className="text-neutral-400 mt-2 text-sm sm:text-base max-w-xl">
-            My core technical arsenal honed for reliability, speed, and clean code craftsmanship.
+          <p className="text-neutral-400 text-sm sm:text-base mt-2 max-w-xl">
+            Technologies and frameworks I have worked with across academic coursework, capstone systems, and independent projects.
           </p>
-          <div className="w-16 h-1 bg-gradient-to-r from-amber-500 to-yellow-400 rounded-full mt-4 sm:mx-0 mx-auto" />
         </div>
 
-        {/* Categorized Rows (Reference Video Layout Inspiration) */}
-        <div className="space-y-10">
-          {skills.map((group, groupIdx) => (
-            <motion.div
-              key={group.category}
-              initial={{ opacity: 0, y: 25 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: '-50px' }}
-              transition={{ duration: 0.5, delay: groupIdx * 0.1 }}
-              className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center p-6 sm:p-8 rounded-3xl bg-[#111320]/80 backdrop-blur-xl border border-white/10 shadow-lg hover:border-amber-400/40 transition-all duration-300"
+        {/* 4-Panel Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
+          {categories.map((cat) => (
+            <div
+              key={cat.title}
+              className="p-5 rounded-xl bg-[#111622] border border-[#1E2536] hover:border-[#2D374D] transition-colors flex flex-col justify-between"
             >
-              {/* Category Info (4 cols) */}
-              <div className="lg:col-span-4">
-                <div className="flex items-center gap-2.5 mb-2">
-                  <span className="w-2.5 h-2.5 rounded-full bg-amber-400 shadow-[0_0_10px_rgba(245,158,11,0.9)]" />
-                  <h3 className="text-xl sm:text-2xl font-bold text-white">
-                    {group.category}
+              <div>
+                {/* Header */}
+                <div className="flex items-center gap-2.5 pb-3 mb-3 border-b border-[#1E2536]">
+                  <div className="p-1.5 rounded-md bg-[#161C2A] border border-[#1E2536] shrink-0">
+                    {cat.icon}
+                  </div>
+                  <h3 className="text-sm font-semibold text-white">
+                    {cat.title}
                   </h3>
                 </div>
-                <p className="text-sm text-neutral-400 leading-relaxed">
-                  {group.description}
+
+                <p className="text-xs text-neutral-400 mb-4 leading-relaxed">
+                  {cat.description}
                 </p>
-              </div>
 
-              {/* Skill Cards Grid (8 cols) */}
-              <div className="lg:col-span-8 grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4">
-                {group.items.map((skill) => {
-                  const IconComponent = iconMap[skill.icon] || Code;
-
-                  return (
-                    <motion.div
+                {/* Skill List */}
+                <ul className="space-y-2">
+                  {cat.skills.map((skill) => (
+                    <li
                       key={skill.name}
-                      onHoverStart={() => setHoveredSkill(skill.name)}
-                      onHoverEnd={() => setHoveredSkill(null)}
-                      whileHover={{ y: -4, scale: 1.02 }}
-                      transition={{ type: 'spring', stiffness: 400, damping: 25 }}
-                      className="p-4 sm:p-5 rounded-2xl bg-[#0B0D16] border border-white/10 flex flex-col items-center justify-center text-center relative group overflow-hidden cursor-default shadow-xs hover:shadow-xl hover:shadow-amber-500/20 hover:border-amber-400/80 transition-all duration-300"
+                      className="p-2 rounded-lg bg-[#0B0E14] border border-[#1E2536] flex items-center justify-between text-xs"
                     >
-                      {/* Katana subtle sheen on hover */}
-                      <div className="absolute inset-0 opacity-0 group-hover:opacity-100 bg-gradient-to-tr from-amber-400/20 via-transparent to-transparent transition-opacity duration-300 pointer-events-none" />
-
-                      {/* Icon */}
-                      <div className="w-11 h-11 rounded-xl bg-[#161826] group-hover:bg-amber-400/20 flex items-center justify-center text-neutral-300 group-hover:text-amber-400 transition-colors mb-3">
-                        <IconComponent className="w-5 h-5 group-hover:scale-110 transition-transform" />
-                      </div>
-
-                      {/* Skill Name */}
-                      <span className="text-sm font-bold text-white">
+                      <span className="font-medium text-neutral-200">
                         {skill.name}
                       </span>
-
-                      {/* Level Indicator Pill */}
-                      <span className="text-[10px] uppercase font-mono font-medium text-neutral-500 group-hover:text-amber-400 mt-1">
-                        {skill.level}
+                      <span className="text-[10px] font-mono text-neutral-400">
+                        {skill.note}
                       </span>
-                    </motion.div>
-                  );
-                })}
+                    </li>
+                  ))}
+                </ul>
               </div>
-            </motion.div>
+            </div>
           ))}
         </div>
+
       </div>
     </section>
   );

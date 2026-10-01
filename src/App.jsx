@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { ThemeProvider } from './context/ThemeContext';
-import ZenitsuBackground from './components/ZenitsuBackground';
-import LightningCanvas from './components/LightningCanvas';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import About from './components/About';
@@ -17,10 +15,9 @@ function PortfolioContent() {
     const sections = ['home', 'about', 'skills', 'projects', 'contact'];
     
     const handleScroll = () => {
-      const scrollY = window.scrollY;
       const windowHeight = window.innerHeight;
 
-      // ScrollSpy logic
+      // ScrollSpy logic with clean thresholds
       for (const sectionId of sections) {
         const el = document.getElementById(sectionId);
         if (el) {
@@ -39,17 +36,14 @@ function PortfolioContent() {
   }, []);
 
   return (
-    <div className="relative min-h-screen bg-[#08090D] text-neutral-50 selection:bg-amber-400 selection:text-neutral-950 transition-colors duration-300">
-      {/* Prominent Full-Bleed Zenitsu Thunder Breathing Animated Background */}
-      <ZenitsuBackground />
+    <div className="relative min-h-screen bg-[#0B0E14] text-neutral-100 selection:bg-amber-400 selection:text-neutral-950 font-sans">
+      {/* Subtle, Static Developer Grid Background */}
+      <div className="fixed inset-0 dev-dot-pattern opacity-40 pointer-events-none z-0" />
 
-      {/* Ambient Canvas with Performance-Optimized Lightning Sparks */}
-      <LightningCanvas />
-
-      {/* Floating Pill Glassmorphic Navbar */}
+      {/* Clean Fixed Header */}
       <Navbar activeSection={activeSection} />
 
-      {/* Main Content Sections */}
+      {/* Main Content Flow */}
       <main className="relative z-10">
         <Hero />
         <About />
@@ -58,7 +52,7 @@ function PortfolioContent() {
         <Contact />
       </main>
 
-      {/* Footer */}
+      {/* Clean Developer Footer */}
       <Footer />
     </div>
   );

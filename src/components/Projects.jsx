@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { ArrowRight, Zap } from 'lucide-react';
+import { AnimatePresence } from 'framer-motion';
+import { ArrowRight, ExternalLink, Code2 } from 'lucide-react';
 import { portfolioData } from '../data/portfolioData';
 import ProjectDetailView from './ProjectDetailView';
 
@@ -23,85 +23,115 @@ export default function Projects() {
   };
 
   return (
-    <section id="projects" className="py-24 px-4 sm:px-6 lg:px-8 relative z-10">
-      {/* Background Accent Glow */}
-      <div className="absolute top-1/3 right-0 w-80 h-80 bg-amber-500/10 rounded-full blur-[140px] pointer-events-none -z-10" />
-
+    <section id="projects" className="py-20 sm:py-24 px-4 sm:px-6 lg:px-8 border-b border-[#1E2536]/60">
       <div className="max-w-6xl w-full mx-auto">
-        {/* Section Header (Matching Reference Image 1) */}
-        <div className="flex items-center justify-between mb-10 pb-4 border-b border-white/10">
-          <div className="flex items-center gap-3 sm:gap-5">
-            {/* Handwritten 'stuff i've built ⤹' Badge */}
-            <div className="hidden sm:block select-none pointer-events-none -mt-2">
-              <img
-                src="/assets/projects/stuff-ive-built.png"
-                alt="stuff i've built ⤹"
-                className="h-9 w-auto object-contain opacity-85 hover:opacity-100 transition-opacity"
-              />
+        
+        {/* Section Header */}
+        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-12">
+          <div>
+            <div className="text-xs font-mono font-semibold tracking-wider text-amber-400 uppercase mb-2">
+              03 / Selected Work
             </div>
-            
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-white">
-              Projects
+            <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-white">
+              Featured Projects
             </h2>
+            <p className="text-neutral-400 text-sm sm:text-base mt-2 max-w-xl">
+              Academic capstones and web applications built with focus on database structure, user workflow, and performance.
+            </p>
           </div>
 
-          <div className="text-xs sm:text-sm font-mono tracking-widest text-neutral-400 font-semibold uppercase">
-            {projects.length} ITEMS
+          <div className="text-xs font-mono text-neutral-400">
+            {projects.length} PROJECTS DISPLAYED
           </div>
         </div>
 
-        {/* 2-Column Grid (Matching Reference Image 1) */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
+        {/* 3-Project Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {projects.map((project, index) => (
-            <motion.div
+            <div
               key={project.id}
-              initial={{ opacity: 0, y: 25 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: '-40px' }}
-              transition={{ duration: 0.5, delay: index * 0.08 }}
-              onClick={() => setSelectedProject(project)}
-              className="group cursor-pointer rounded-2xl sm:rounded-3xl p-3.5 sm:p-5 bg-[#0B0C14]/90 backdrop-blur-xl border border-white/10 hover:border-amber-400/60 shadow-lg hover:shadow-[0_0_35px_rgba(245,158,11,0.22)] transition-all duration-300 flex flex-col"
+              className="rounded-xl bg-[#111622] border border-[#1E2536] hover:border-[#2D374D] transition-all flex flex-col justify-between overflow-hidden group shadow-sm"
             >
-              {/* Thumbnail Image Viewport */}
-              <div className="w-full aspect-[16/10] rounded-xl sm:rounded-2xl overflow-hidden bg-black/60 border border-white/10 mb-4 relative">
-                <img
-                  src={project.thumbnail}
-                  alt={project.cardTitle}
-                  className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500"
-                />
+              <div>
+                {/* Project Image Viewport */}
+                <div
+                  onClick={() => setSelectedProject(project)}
+                  className="w-full aspect-[16/10] overflow-hidden bg-neutral-900 border-b border-[#1E2536] cursor-pointer relative"
+                >
+                  <img
+                    src={project.heroImage || project.thumbnail}
+                    alt={project.cardTitle}
+                    className="w-full h-full object-cover object-top group-hover:scale-[1.02] transition-transform duration-300"
+                  />
+                </div>
 
-                {/* Subtle dark gradient overlay on hover */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
+                {/* Content */}
+                <div className="p-5">
+                  {/* Top Metadata */}
+                  <div className="flex items-center justify-between text-xs font-mono text-neutral-400 mb-2">
+                    <span className="text-amber-400 font-semibold">#{String(index + 1).padStart(2, '0')}</span>
+                    <span>{project.category}</span>
+                  </div>
+
+                  {/* Title */}
+                  <h3
+                    onClick={() => setSelectedProject(project)}
+                    className="text-base font-bold text-white group-hover:text-amber-400 transition-colors cursor-pointer leading-snug mb-2"
+                  >
+                    {project.cardTitle}
+                  </h3>
+
+                  {/* Short description */}
+                  <p className="text-xs text-neutral-300 line-clamp-2 leading-relaxed mb-4">
+                    {project.lead || project.description}
+                  </p>
+
+                  {/* Tech stack badges */}
+                  <div className="flex flex-wrap gap-1.5 mb-2">
+                    {project.technologies.slice(0, 4).map((tech) => (
+                      <span
+                        key={tech}
+                        className="px-2 py-0.5 rounded-md bg-[#0B0E14] border border-[#1E2536] text-[11px] font-mono text-neutral-300"
+                      >
+                        {tech}
+                      </span>
+                    ))}
+                  </div>
+                </div>
               </div>
 
-              {/* Title & Date */}
-              <div className="px-1 flex flex-col justify-between flex-1">
-                <h3 className="font-bold text-white text-base sm:text-lg group-hover:text-amber-400 transition-colors leading-snug">
-                  {project.cardTitle}
-                </h3>
-                <p className="text-xs font-mono text-neutral-400 mt-1.5">
-                  {project.date}
-                </p>
+              {/* Bottom Action Bar */}
+              <div className="p-5 pt-0">
+                <button
+                  onClick={() => setSelectedProject(project)}
+                  className="w-full py-2.5 px-3 rounded-lg bg-[#161C2A] hover:bg-[#1E2536] border border-[#1E2536] hover:border-[#2D374D] text-xs font-semibold text-neutral-200 hover:text-white flex items-center justify-center gap-2 transition-colors cursor-pointer"
+                >
+                  <span>View Details & Architecture</span>
+                  <ArrowRight className="w-3.5 h-3.5 text-amber-400" />
+                </button>
               </div>
-            </motion.div>
+
+            </div>
           ))}
         </div>
 
-        {/* Bottom Button (Matching Reference Image 1) */}
+        {/* Bottom GitHub Link */}
         <div className="mt-12 text-center">
           <a
             href={portfolioData.socialLinks.github.url}
             target="_blank"
             rel="noreferrer"
-            className="inline-flex items-center gap-2.5 px-6 py-2.5 rounded-full bg-[#121422] hover:bg-[#1A1D30] border border-white/15 hover:border-amber-400/60 text-xs font-semibold text-neutral-200 hover:text-white transition-all shadow-md group cursor-pointer"
+            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-[#111622] hover:bg-[#161C2A] border border-[#1E2536] hover:border-[#2D374D] text-xs font-medium text-neutral-300 hover:text-white transition-colors"
           >
-            <span>All projects</span>
-            <ArrowRight className="w-3.5 h-3.5 text-neutral-400 group-hover:text-amber-400 group-hover:translate-x-1 transition-all" />
+            <Code2 className="w-4 h-4 text-amber-400" />
+            <span>View repositories on GitHub</span>
+            <ExternalLink className="w-3.5 h-3.5 ml-1 text-neutral-400" />
           </a>
         </div>
+
       </div>
 
-      {/* Interactive Project Detail View / Page Modal (Matching Reference Image 2) */}
+      {/* Interactive Modal */}
       <AnimatePresence>
         {selectedProject && (
           <ProjectDetailView
