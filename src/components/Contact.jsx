@@ -12,6 +12,7 @@ import {
   MapPin,
   Send,
   CheckCircle2,
+  AlertCircle,
   Copy,
   Check,
 } from 'lucide-react';
@@ -27,6 +28,7 @@ export default function Contact() {
   });
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('');
   const [copiedKey, setCopiedKey] = useState(null);
 
   const handleCopy = (text, key) => {
@@ -35,17 +37,54 @@ export default function Contact() {
     setTimeout(() => setCopiedKey(null), 2000);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (!formData.name || !formData.email || !formData.message) return;
     setLoading(true);
+    setErrorMessage('');
 
-    setTimeout(() => {
+    try {
+      // Send directly to Rogelio's Gmail using FormSubmit AJAX endpoint
+      const response = await fetch(`https://formsubmit.co/ajax/${personal.email}`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json',
+        },
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          _subject: formData.subject ? `[Portfolio] ${formData.subject}` : `[Portfolio] Message from ${formData.name}`,
+          message: formData.message,
+          _template: 'table',
+          _captcha: 'false',
+        }),
+      });
+
+      const result = await response.json();
+
+      if (response.ok && result.success !== 'false') {
+        setSubmitted(true);
+        setFormData({ name: '', email: '', subject: '', message: '' });
+      } else {
+        throw new Error(result.message || 'Submission failed');
+      }
+    } catch (err) {
+      console.warn('FormSubmit failed, providing fallback:', err);
+      // Fallback: open visitor's email client with pre-filled content
+      const mailtoUrl = `mailto:${personal.email}?subject=${encodeURIComponent(
+        formData.subject || `Portfolio Inquiry from ${formData.name}`
+      )}&body=${encodeURIComponent(
+        `Name: ${formData.name}\nEmail: ${formData.email}\n\nMessage:\n${formData.message}`
+      )}`;
+      
+      setErrorMessage(
+        'Direct transmission failed. You can click below to send via your email client instead.'
+      );
+      window.location.href = mailtoUrl;
+    } finally {
       setLoading(false);
-      setSubmitted(true);
-      setFormData({ name: '', email: '', subject: '', message: '' });
-      setTimeout(() => setSubmitted(false), 5000);
-    }, 700);
+    }
   };
 
   return (
@@ -113,7 +152,7 @@ export default function Contact() {
                 <button
                   type="button"
                   onClick={() => handleCopy(personal.email, 'email')}
-                  className="p-1.5 rounded text-neutral-400 hover:text-white hover:bg-[#1E2536] transition-colors shrink-0"
+                  className="p-1.5 rounded text-neutral-400 hover:text-white hover:bg-[#1E2536] transition-colors shrink-0 cursor-pointer"
                   title="Copy email address"
                   aria-label="Copy email address"
                 >
@@ -144,7 +183,7 @@ export default function Contact() {
                 <button
                   type="button"
                   onClick={() => handleCopy(personal.phone, 'phone')}
-                  className="p-1.5 rounded text-neutral-400 hover:text-white hover:bg-[#1E2536] transition-colors shrink-0"
+                  className="p-1.5 rounded text-neutral-400 hover:text-white hover:bg-[#1E2536] transition-colors shrink-0 cursor-pointer"
                   title="Copy phone number"
                   aria-label="Copy phone number"
                 >
@@ -229,7 +268,7 @@ export default function Contact() {
                   Send a Direct Message
                 </h3>
                 <p className="text-xs text-neutral-400 mt-1">
-                  Fill in your details below and I'll get back to you directly.
+                  Fill in your details below and it will be delivered directly to my inbox at <span className="text-amber-400 font-mono">{personal.email}</span>.
                 </p>
               </div>
 
@@ -237,14 +276,38 @@ export default function Contact() {
                 <div className="p-6 rounded-lg bg-emerald-950/40 border border-emerald-500/30 text-emerald-200">
                   <div className="flex items-center gap-2.5 font-semibold text-white mb-2">
                     <CheckCircle2 className="w-5 h-5 text-emerald-400 shrink-0" />
-                    <span>Message received!</span>
+                    <span>Message Sent Successfully!</span>
                   </div>
-                  <p className="text-xs text-emerald-300/90 leading-relaxed">
-                    Thank you for reaching out. Your message has been sent successfully, and I will get back to you as soon as possible.
+                  <p className="text-xs text-emerald-300/90 leading-relaxed mb-4">
+                    Thank you for reaching out. Your message has been sent to <strong className="text-white">{personal.email}</strong>. I will get back to you as soon as possible.
                   </p>
+                  <button
+                    type="button"
+                    onClick={() => setSubmitted(false)}
+                    className="text-xs font-mono text-amber-400 hover:text-amber-300 underline cursor-pointer"
+                  >
+                    Send another message
+                  </button>
                 </div>
               ) : (
                 <form onSubmit={handleSubmit} className="space-y-4">
+                  {errorMessage && (
+                    <div className="p-3.5 rounded-lg bg-red-950/40 border border-red-500/30 text-red-200 text-xs flex items-start gap-2.5">
+                      <AlertCircle className="w-4 h-4 text-red-400 shrink-0 mt-0.5" />
+                      <div className="flex-1">
+                        <div>{errorMessage}</div>
+                        <a
+                          href={`mailto:${personal.email}?subject=${encodeURIComponent(
+                            formData.subject || 'Portfolio Inquiry'
+                          )}&body=${encodeURIComponent(formData.message)}`}
+                          className="inline-block mt-2 font-mono text-amber-400 hover:underline"
+                        >
+                          → Open in default email app
+                        </a>
+                      </div>
+                    </div>
+                  )}
+
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     {/* Name Input */}
                     <div>
@@ -306,10 +369,16 @@ export default function Contact() {
                     />
                   </div>
 
-                  {/* Submit Button */}
+                  {/* Submit Button & Direct Mail Link */}
                   <div className="pt-2 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
-                    <p className="text-[11px] text-neutral-500">
-                      Response typically within 24-48 hours.
+                    <p className="text-[11px] text-neutral-400">
+                      Prefer email client?{' '}
+                      <a
+                        href={`mailto:${personal.email}?subject=Portfolio%20Inquiry`}
+                        className="text-amber-400 hover:underline"
+                      >
+                        Click here
+                      </a>
                     </p>
                     <button
                       type="submit"
