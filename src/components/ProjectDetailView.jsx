@@ -27,8 +27,11 @@ export default function ProjectDetailView({ project, onClose, onPrev, onNext }) 
       : null
   );
 
+  const isFigma = projectUrl && projectUrl.includes('figma.com');
+
   const envUrl = project.deployedOn
     ? (() => {
+        if (isFigma) return projectUrl;
         const clean = project.deployedOn.replace(/^[▲\s]+/, '').trim();
         return clean.includes('.') ? `https://${clean}` : null;
       })()
@@ -98,7 +101,7 @@ export default function ProjectDetailView({ project, onClose, onPrev, onNext }) 
                 rel="noreferrer"
                 className="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-amber-400 hover:bg-amber-300 text-neutral-950 font-semibold text-xs transition-colors"
               >
-                <span>Live Site</span>
+                <span>{isFigma ? 'Figma Design' : 'Live Site'}</span>
                 <ExternalLink className="w-3 h-3" />
               </a>
             )}
@@ -190,7 +193,9 @@ export default function ProjectDetailView({ project, onClose, onPrev, onNext }) 
                   className="px-3 py-1 rounded bg-[#0B0E14] border border-[#1E2536] hover:border-amber-400/50 text-[11px] font-mono text-neutral-300 hover:text-amber-400 flex items-center gap-1.5 truncate max-w-sm transition-colors group cursor-pointer"
                   title="Open live website in new tab"
                 >
-                  <span className="truncate">{projectUrl}</span>
+                  <span className="truncate">
+                    {project.liveUrl ? `https://${project.liveUrl.replace(/^https?:\/\//, '')}` : projectUrl}
+                  </span>
                   <ExternalLink className="w-3 h-3 text-neutral-400 group-hover:text-amber-400 shrink-0" />
                 </a>
               ) : (
@@ -431,7 +436,7 @@ export default function ProjectDetailView({ project, onClose, onPrev, onNext }) 
                 rel="noreferrer"
                 className="inline-flex items-center gap-2 px-6 py-2.5 rounded-lg bg-amber-400 hover:bg-amber-300 text-neutral-950 font-semibold text-xs sm:text-sm transition-colors cursor-pointer"
               >
-                <span>Visit Live Project</span>
+                <span>{isFigma ? 'Open Figma Design' : 'Visit Live Project'}</span>
                 <ExternalLink className="w-4 h-4" />
               </a>
             )}
