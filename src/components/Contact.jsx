@@ -56,7 +56,10 @@ export default function Contact() {
         body: JSON.stringify({
           name: formData.name,
           email: formData.email,
-          _subject: formData.subject ? `[Portfolio] ${formData.subject}` : `[Portfolio] Message from ${formData.name}`,
+          _replyto: formData.email,
+          _subject: formData.subject
+            ? `[Portfolio] ${formData.subject} — from ${formData.name}`
+            : `[Portfolio] New message from ${formData.name}`,
           message: formData.message,
           _template: 'table',
           _captcha: 'false',
