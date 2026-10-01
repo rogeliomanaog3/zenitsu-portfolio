@@ -6,7 +6,7 @@ import {
   ChevronLeft,
   ChevronRight,
   ChevronDown,
-  ArrowUpRight,
+  ExternalLink,
   X,
 } from 'lucide-react';
 import { portfolioData } from '../data/portfolioData';
@@ -17,6 +17,22 @@ export default function ProjectDetailView({ project, onClose, onPrev, onNext }) 
   // Accordion state
   const [architectureOpen, setArchitectureOpen] = useState(true);
   const [highlightsOpen, setHighlightsOpen] = useState(true);
+
+  // Compute clean URLs
+  const projectUrl = project.liveUrlFull || (
+    project.liveUrl && project.liveUrl !== '#'
+      ? (project.liveUrl.startsWith('http://') || project.liveUrl.startsWith('https://')
+          ? project.liveUrl
+          : `https://${project.liveUrl}`)
+      : null
+  );
+
+  const envUrl = project.deployedOn
+    ? (() => {
+        const clean = project.deployedOn.replace(/^[▲\s]+/, '').trim();
+        return clean.includes('.') ? `https://${clean}` : null;
+      })()
+    : null;
 
   // Lock body scroll when modal is open
   useEffect(() => {
@@ -73,29 +89,43 @@ export default function ProjectDetailView({ project, onClose, onPrev, onNext }) 
             <span>Back to Projects</span>
           </button>
 
-          {/* Right Controls: Previous / Next & Close */}
-          <div className="flex items-center gap-1.5">
-            <button
-              onClick={onPrev}
-              className="p-1.5 rounded-lg bg-[#161C2A] hover:bg-[#1E2536] border border-[#1E2536] text-neutral-300 hover:text-white transition-colors cursor-pointer"
-              title="Previous Project (Left Arrow)"
-            >
-              <ChevronLeft className="w-4 h-4" />
-            </button>
-            <button
-              onClick={onNext}
-              className="p-1.5 rounded-lg bg-[#161C2A] hover:bg-[#1E2536] border border-[#1E2536] text-neutral-300 hover:text-white transition-colors cursor-pointer"
-              title="Next Project (Right Arrow)"
-            >
-              <ChevronRight className="w-4 h-4" />
-            </button>
-            <button
-              onClick={onClose}
-              className="p-1.5 rounded-lg bg-[#161C2A] hover:bg-red-500/20 hover:text-red-400 border border-[#1E2536] text-neutral-400 transition-colors cursor-pointer ml-1"
-              title="Close View (Esc)"
-            >
-              <X className="w-4 h-4" />
-            </button>
+          {/* Right Controls: Visit Live Site + Previous / Next & Close */}
+          <div className="flex items-center gap-2">
+            {projectUrl && (
+              <a
+                href={projectUrl}
+                target="_blank"
+                rel="noreferrer"
+                className="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-amber-400 hover:bg-amber-300 text-neutral-950 font-semibold text-xs transition-colors"
+              >
+                <span>Live Site</span>
+                <ExternalLink className="w-3 h-3" />
+              </a>
+            )}
+
+            <div className="flex items-center gap-1">
+              <button
+                onClick={onPrev}
+                className="p-1.5 rounded-lg bg-[#161C2A] hover:bg-[#1E2536] border border-[#1E2536] text-neutral-300 hover:text-white transition-colors cursor-pointer"
+                title="Previous Project (Left Arrow)"
+              >
+                <ChevronLeft className="w-4 h-4" />
+              </button>
+              <button
+                onClick={onNext}
+                className="p-1.5 rounded-lg bg-[#161C2A] hover:bg-[#1E2536] border border-[#1E2536] text-neutral-300 hover:text-white transition-colors cursor-pointer"
+                title="Next Project (Right Arrow)"
+              >
+                <ChevronRight className="w-4 h-4" />
+              </button>
+              <button
+                onClick={onClose}
+                className="p-1.5 rounded-lg bg-[#161C2A] hover:bg-red-500/20 hover:text-red-400 border border-[#1E2536] text-neutral-400 transition-colors cursor-pointer ml-1"
+                title="Close View (Esc)"
+              >
+                <X className="w-4 h-4" />
+              </button>
+            </div>
           </div>
 
         </div>
@@ -114,9 +144,22 @@ export default function ProjectDetailView({ project, onClose, onPrev, onNext }) 
                 {project.title}
               </h1>
             </div>
-            <span className="px-2.5 py-1 rounded-md text-xs font-mono font-medium tracking-wider uppercase bg-[#161C2A] border border-[#1E2536] text-neutral-300 self-start shrink-0">
-              {project.category}
-            </span>
+            <div className="flex items-center gap-2 self-start shrink-0">
+              <span className="px-2.5 py-1 rounded-md text-xs font-mono font-medium tracking-wider uppercase bg-[#161C2A] border border-[#1E2536] text-neutral-300">
+                {project.category}
+              </span>
+              {projectUrl && (
+                <a
+                  href={projectUrl}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="sm:hidden inline-flex items-center gap-1 px-2.5 py-1 rounded-md text-xs font-mono font-medium bg-amber-400 text-neutral-950"
+                >
+                  <span>Open</span>
+                  <ExternalLink className="w-3 h-3" />
+                </a>
+              )}
+            </div>
           </div>
 
           {/* Lead Paragraph */}
@@ -132,16 +175,31 @@ export default function ProjectDetailView({ project, onClose, onPrev, onNext }) 
           {/* Large Hero Browser Mockup Showcase */}
           <div className="rounded-xl overflow-hidden bg-neutral-900 border border-[#1E2536] mb-8 shadow-sm">
             {/* Browser Mockup Header */}
-            <div className="px-4 py-2 bg-[#111622] border-b border-[#1E2536] flex items-center justify-between">
-              <div className="flex items-center gap-1.5">
+            <div className="px-4 py-2.5 bg-[#111622] border-b border-[#1E2536] flex items-center justify-between gap-3">
+              <div className="flex items-center gap-1.5 shrink-0">
                 <span className="w-2.5 h-2.5 rounded-full bg-neutral-700" />
                 <span className="w-2.5 h-2.5 rounded-full bg-neutral-700" />
                 <span className="w-2.5 h-2.5 rounded-full bg-neutral-700" />
               </div>
-              <span className="text-[11px] font-mono text-neutral-400 truncate max-w-xs">
-                https://{project.liveUrl}
-              </span>
-              <span className="text-[10px] text-emerald-400 font-mono flex items-center gap-1.5">
+
+              {projectUrl ? (
+                <a
+                  href={projectUrl}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="px-3 py-1 rounded bg-[#0B0E14] border border-[#1E2536] hover:border-amber-400/50 text-[11px] font-mono text-neutral-300 hover:text-amber-400 flex items-center gap-1.5 truncate max-w-sm transition-colors group cursor-pointer"
+                  title="Open live website in new tab"
+                >
+                  <span className="truncate">{projectUrl}</span>
+                  <ExternalLink className="w-3 h-3 text-neutral-400 group-hover:text-amber-400 shrink-0" />
+                </a>
+              ) : (
+                <span className="text-[11px] font-mono text-neutral-400 truncate max-w-xs">
+                  https://{project.liveUrl}
+                </span>
+              )}
+
+              <span className="text-[10px] text-emerald-400 font-mono flex items-center gap-1.5 shrink-0">
                 <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
                 VERIFIED
               </span>
@@ -292,19 +350,45 @@ export default function ProjectDetailView({ project, onClose, onPrev, onNext }) 
                 <div className="text-[10px] font-mono font-medium text-neutral-400 uppercase tracking-wider mb-1">
                   ENVIRONMENT
                 </div>
-                <div className="text-xs font-mono text-neutral-200 truncate">
-                  {project.deployedOn}
-                </div>
+                {envUrl ? (
+                  <a
+                    href={envUrl}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="text-xs font-mono font-medium text-neutral-200 hover:text-amber-400 transition-colors flex items-center gap-1.5 truncate group"
+                    title={`Open ${envUrl}`}
+                  >
+                    <span className="truncate">{project.deployedOn}</span>
+                    <ExternalLink className="w-3 h-3 text-neutral-400 group-hover:text-amber-400 shrink-0" />
+                  </a>
+                ) : (
+                  <div className="text-xs font-mono font-medium text-neutral-200 truncate">
+                    {project.deployedOn}
+                  </div>
+                )}
               </div>
 
-              {/* Row 2: Live URL */}
+              {/* Row 2: Live URL (Made Clickable) */}
               <div className="p-4 border-b sm:border-b-0 sm:border-r border-[#1E2536]">
                 <div className="text-[10px] font-mono font-medium text-neutral-400 uppercase tracking-wider mb-1">
                   SYSTEM URL
                 </div>
-                <span className="text-xs font-mono text-amber-400 truncate block">
-                  {project.liveUrl}
-                </span>
+                {projectUrl ? (
+                  <a
+                    href={projectUrl}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="text-xs font-mono text-amber-400 hover:text-amber-300 hover:underline flex items-center gap-1.5 truncate group"
+                    title={`Visit ${projectUrl}`}
+                  >
+                    <span className="truncate">{project.liveUrl}</span>
+                    <ExternalLink className="w-3.5 h-3.5 shrink-0 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+                  </a>
+                ) : (
+                  <span className="text-xs font-mono text-neutral-400 truncate block">
+                    {project.liveUrl}
+                  </span>
+                )}
               </div>
 
               {/* Row 2: Status */}
@@ -330,15 +414,27 @@ export default function ProjectDetailView({ project, onClose, onPrev, onNext }) 
             </div>
           </div>
 
-          {/* Bottom Back to Projects Button */}
-          <div className="my-10 text-center">
+          {/* Bottom Back to Projects & Live Site Buttons */}
+          <div className="my-10 flex flex-wrap items-center justify-center gap-3">
             <button
               onClick={onClose}
-              className="inline-flex items-center gap-2 px-6 py-2.5 rounded-lg bg-amber-500 hover:bg-amber-400 text-neutral-950 font-semibold text-xs sm:text-sm transition-colors cursor-pointer"
+              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-[#161C2A] hover:bg-[#1E2536] border border-[#1E2536] text-neutral-200 hover:text-white font-medium text-xs sm:text-sm transition-colors cursor-pointer"
             >
               <ArrowLeft className="w-4 h-4" />
               <span>Back to Projects</span>
             </button>
+
+            {projectUrl && (
+              <a
+                href={projectUrl}
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex items-center gap-2 px-6 py-2.5 rounded-lg bg-amber-400 hover:bg-amber-300 text-neutral-950 font-semibold text-xs sm:text-sm transition-colors cursor-pointer"
+              >
+                <span>Visit Live Project</span>
+                <ExternalLink className="w-4 h-4" />
+              </a>
+            )}
           </div>
 
         </div>

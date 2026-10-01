@@ -101,14 +101,26 @@ export default function Projects() {
               </div>
 
               {/* Bottom Action Bar */}
-              <div className="p-5 pt-0">
+              <div className="p-5 pt-0 flex items-center gap-2">
                 <button
                   onClick={() => setSelectedProject(project)}
-                  className="w-full py-2.5 px-3 rounded-lg bg-[#161C2A] hover:bg-[#1E2536] border border-[#1E2536] hover:border-[#2D374D] text-xs font-semibold text-neutral-200 hover:text-white flex items-center justify-center gap-2 transition-colors cursor-pointer"
+                  className="flex-1 py-2.5 px-3 rounded-lg bg-[#161C2A] hover:bg-[#1E2536] border border-[#1E2536] hover:border-[#2D374D] text-xs font-semibold text-neutral-200 hover:text-white flex items-center justify-center gap-2 transition-colors cursor-pointer"
                 >
-                  <span>View Details & Architecture</span>
+                  <span>Details & Architecture</span>
                   <ArrowRight className="w-3.5 h-3.5 text-amber-400" />
                 </button>
+                {project.liveUrl && project.liveUrl !== '#' && (
+                  <a
+                    href={project.liveUrlFull || (project.liveUrl.startsWith('http') ? project.liveUrl : `https://${project.liveUrl}`)}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="p-2.5 rounded-lg bg-[#161C2A] hover:bg-[#1E2536] hover:text-amber-400 border border-[#1E2536] hover:border-[#2D374D] text-neutral-300 transition-colors"
+                    title="Open live website"
+                    aria-label={`Open live website for ${project.title}`}
+                  >
+                    <ExternalLink className="w-3.5 h-3.5" />
+                  </a>
+                )}
               </div>
 
             </div>
