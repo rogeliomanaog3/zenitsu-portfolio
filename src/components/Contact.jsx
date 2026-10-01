@@ -13,6 +13,7 @@ import {
   Send,
   CheckCircle2,
   AlertCircle,
+  ExternalLink,
   Copy,
   Check,
 } from 'lucide-react';
@@ -27,6 +28,7 @@ export default function Contact() {
     message: '',
   });
   const [submitted, setSubmitted] = useState(false);
+  const [needsActivation, setNeedsActivation] = useState(false);
   const [loading, setLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
   const [copiedKey, setCopiedKey] = useState(null);
@@ -63,28 +65,41 @@ export default function Contact() {
 
       const result = await response.json();
 
-      if (response.ok && result.success !== 'false') {
+      if (response.ok && (result.success === true || result.success === 'true')) {
         setSubmitted(true);
+        setNeedsActivation(false);
         setFormData({ name: '', email: '', subject: '', message: '' });
+      } else if (result.message && result.message.toLowerCase().includes('activation')) {
+        // FormSubmit sent the one-time activation email to Rogelio
+        setNeedsActivation(true);
+        setSubmitted(true);
       } else {
         throw new Error(result.message || 'Submission failed');
       }
     } catch (err) {
-      console.warn('FormSubmit failed, providing fallback:', err);
-      // Fallback: open visitor's email client with pre-filled content
-      const mailtoUrl = `mailto:${personal.email}?subject=${encodeURIComponent(
-        formData.subject || `Portfolio Inquiry from ${formData.name}`
-      )}&body=${encodeURIComponent(
-        `Name: ${formData.name}\nEmail: ${formData.email}\n\nMessage:\n${formData.message}`
-      )}`;
-      
+      console.warn('FormSubmit endpoint error:', err);
       setErrorMessage(
-        'Direct transmission failed. You can click below to send via your email client instead.'
+        'Submission server is waiting for activation or network issue. You can send directly using Gmail or your mail app below.'
       );
-      window.location.href = mailtoUrl;
     } finally {
       setLoading(false);
     }
+  };
+
+  const getGmailComposeUrl = () => {
+    const subject = encodeURIComponent(formData.subject || `Portfolio Inquiry from ${formData.name || 'Visitor'}`);
+    const body = encodeURIComponent(
+      `From: ${formData.name || ''}\nEmail: ${formData.email || ''}\n\nMessage:\n${formData.message || ''}`
+    );
+    return `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(personal.email)}&su=${subject}&body=${body}`;
+  };
+
+  const getMailtoUrl = () => {
+    const subject = encodeURIComponent(formData.subject || `Portfolio Inquiry from ${formData.name || 'Visitor'}`);
+    const body = encodeURIComponent(
+      `From: ${formData.name || ''}\nEmail: ${formData.email || ''}\n\nMessage:\n${formData.message || ''}`
+    );
+    return `mailto:${personal.email}?subject=${subject}&body=${body}`;
   };
 
   return (
@@ -268,27 +283,65 @@ export default function Contact() {
                   Send a Direct Message
                 </h3>
                 <p className="text-xs text-neutral-400 mt-1">
-                  Fill in your details below and it will be delivered directly to my inbox at <span className="text-amber-400 font-mono">{personal.email}</span>.
+                  Fill in your details below to deliver straight to <span className="text-amber-400 font-mono">{personal.email}</span>.
                 </p>
               </div>
 
               {submitted ? (
-                <div className="p-6 rounded-lg bg-emerald-950/40 border border-emerald-500/30 text-emerald-200">
-                  <div className="flex items-center gap-2.5 font-semibold text-white mb-2">
-                    <CheckCircle2 className="w-5 h-5 text-emerald-400 shrink-0" />
-                    <span>Message Sent Successfully!</span>
+                needsActivation ? (
+                  /* FormSubmit One-Time Activation Notice */
+                  <div className="p-6 rounded-lg bg-[#161C2B] border border-amber-400/50 text-neutral-200">
+                    <div className="flex items-center gap-2.5 font-semibold text-white mb-2">
+                      <AlertCircle className="w-5 h-5 text-amber-400 shrink-0" />
+                      <span className="text-amber-400 text-sm font-bold">One-Time Activation Required</span>
+                    </div>
+                    <p className="text-xs text-neutral-300 leading-relaxed mb-3">
+                      May pinadalang activation link ang <strong>FormSubmit</strong> sa iyong email (<strong className="text-white">{personal.email}</strong>).
+                    </p>
+                    <p className="text-xs text-neutral-300 leading-relaxed mb-4">
+                      Pakibuksan ang iyong <strong>Gmail Inbox o Spam folder</strong> at pindutin ang <strong>"Activate Form"</strong> button. Isang beses lang ito kailangan gawin. Pagkatapos ma-click, papasok na lahat ng messages nang kusa!
+                    </p>
+                    <div className="flex flex-wrap items-center gap-3">
+                      <a
+                        href="https://mail.google.com"
+                        target="_blank"
+                        rel="noreferrer"
+                        className="inline-flex items-center gap-1.5 px-4 py-2 rounded-lg bg-amber-400 hover:bg-amber-300 text-neutral-950 font-semibold text-xs transition-colors"
+                      >
+                        <span>Open Gmail Inbox</span>
+                        <ExternalLink className="w-3.5 h-3.5" />
+                      </a>
+                      <button
+                        type="button"
+                        onClick={() => {
+                          setSubmitted(false);
+                          setNeedsActivation(false);
+                        }}
+                        className="text-xs font-mono text-neutral-400 hover:text-white transition-colors cursor-pointer"
+                      >
+                        ← Back to form
+                      </button>
+                    </div>
                   </div>
-                  <p className="text-xs text-emerald-300/90 leading-relaxed mb-4">
-                    Thank you for reaching out. Your message has been sent to <strong className="text-white">{personal.email}</strong>. I will get back to you as soon as possible.
-                  </p>
-                  <button
-                    type="button"
-                    onClick={() => setSubmitted(false)}
-                    className="text-xs font-mono text-amber-400 hover:text-amber-300 underline cursor-pointer"
-                  >
-                    Send another message
-                  </button>
-                </div>
+                ) : (
+                  /* Message Sent Confirmation */
+                  <div className="p-6 rounded-lg bg-emerald-950/40 border border-emerald-500/30 text-emerald-200">
+                    <div className="flex items-center gap-2.5 font-semibold text-white mb-2">
+                      <CheckCircle2 className="w-5 h-5 text-emerald-400 shrink-0" />
+                      <span>Message Sent Successfully!</span>
+                    </div>
+                    <p className="text-xs text-emerald-300/90 leading-relaxed mb-4">
+                      Thank you for reaching out. Your message has been delivered to <strong className="text-white">{personal.email}</strong>. I will get back to you as soon as possible.
+                    </p>
+                    <button
+                      type="button"
+                      onClick={() => setSubmitted(false)}
+                      className="text-xs font-mono text-amber-400 hover:text-amber-300 underline cursor-pointer"
+                    >
+                      Send another message
+                    </button>
+                  </div>
+                )
               ) : (
                 <form onSubmit={handleSubmit} className="space-y-4">
                   {errorMessage && (
@@ -296,14 +349,24 @@ export default function Contact() {
                       <AlertCircle className="w-4 h-4 text-red-400 shrink-0 mt-0.5" />
                       <div className="flex-1">
                         <div>{errorMessage}</div>
-                        <a
-                          href={`mailto:${personal.email}?subject=${encodeURIComponent(
-                            formData.subject || 'Portfolio Inquiry'
-                          )}&body=${encodeURIComponent(formData.message)}`}
-                          className="inline-block mt-2 font-mono text-amber-400 hover:underline"
-                        >
-                          → Open in default email app
-                        </a>
+                        <div className="flex items-center gap-3 mt-2">
+                          <a
+                            href={getGmailComposeUrl()}
+                            target="_blank"
+                            rel="noreferrer"
+                            className="font-mono text-amber-400 hover:underline flex items-center gap-1"
+                          >
+                            <span>Open in Gmail</span>
+                            <ExternalLink className="w-3 h-3" />
+                          </a>
+                          <span>•</span>
+                          <a
+                            href={getMailtoUrl()}
+                            className="font-mono text-amber-400 hover:underline"
+                          >
+                            Open in Mail App
+                          </a>
+                        </div>
                       </div>
                     </div>
                   )}
@@ -371,15 +434,28 @@ export default function Contact() {
 
                   {/* Submit Button & Direct Mail Link */}
                   <div className="pt-2 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
-                    <p className="text-[11px] text-neutral-400">
-                      Prefer email client?{' '}
+                    <div className="flex items-center gap-2 text-[11px] text-neutral-400">
+                      <span>Or send via:</span>
                       <a
-                        href={`mailto:${personal.email}?subject=Portfolio%20Inquiry`}
-                        className="text-amber-400 hover:underline"
+                        href={getGmailComposeUrl()}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="text-amber-400 hover:underline flex items-center gap-1"
+                        title="Open in Gmail web compose"
                       >
-                        Click here
+                        <span>Gmail</span>
+                        <ExternalLink className="w-3 h-3" />
                       </a>
-                    </p>
+                      <span>•</span>
+                      <a
+                        href={getMailtoUrl()}
+                        className="text-amber-400 hover:underline"
+                        title="Open in default mail client"
+                      >
+                        Mail app
+                      </a>
+                    </div>
+
                     <button
                       type="submit"
                       disabled={loading}
